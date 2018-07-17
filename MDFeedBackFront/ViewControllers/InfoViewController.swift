@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  InfoViewController.swift
 //  MDFeedBackFront
 //
 //  Created by Андрей Васильев on 17.07.2018.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class InfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        
     }
 }
-

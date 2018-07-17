@@ -8,21 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		0E36A10E20FE8571008321F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36A10D20FE8571008321F5 /* AppDelegate.swift */; };
-		0E36A11020FE8571008321F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36A10F20FE8571008321F5 /* ViewController.swift */; };
 		0E36A11320FE8571008321F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E36A11120FE8571008321F5 /* Main.storyboard */; };
 		0E36A11520FE8573008321F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E36A11420FE8573008321F5 /* Assets.xcassets */; };
 		0E36A11820FE8573008321F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E36A11620FE8573008321F5 /* LaunchScreen.storyboard */; };
+		0ED493E720FE88EC008600EF /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493E620FE88EC008600EF /* MessageViewController.swift */; };
+		0ED493EE20FE89BF008600EF /* MDFeedBackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493ED20FE89BF008600EF /* MDFeedBackManager.swift */; };
+		0ED493F020FE89E9008600EF /* MDFeedBackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493EF20FE89E9008600EF /* MDFeedBackProtocol.swift */; };
+		0ED493F220FE8A0B008600EF /* MDFeedBackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493F120FE8A0B008600EF /* MDFeedBackDelegate.swift */; };
+		0ED493F420FE8A6B008600EF /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493F320FE8A6B008600EF /* InfoViewController.swift */; };
+		0ED493F720FE8AD8008600EF /* MDFeedBackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493F620FE8AD8008600EF /* MDFeedBackModel.swift */; };
 		E18A8735313D14298508C5B7 /* Pods_MDFeedBackFront.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B68AFA6DC6820ED62EB963E /* Pods_MDFeedBackFront.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E36A10A20FE8571008321F5 /* MDFeedBackFront.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDFeedBackFront.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E36A10D20FE8571008321F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0E36A10F20FE8571008321F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0E36A11220FE8571008321F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E36A11420FE8573008321F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E36A11720FE8573008321F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E36A11920FE8573008321F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0ED493E620FE88EC008600EF /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		0ED493ED20FE89BF008600EF /* MDFeedBackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDFeedBackManager.swift; sourceTree = "<group>"; };
+		0ED493EF20FE89E9008600EF /* MDFeedBackProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDFeedBackProtocol.swift; sourceTree = "<group>"; };
+		0ED493F120FE8A0B008600EF /* MDFeedBackDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDFeedBackDelegate.swift; sourceTree = "<group>"; };
+		0ED493F320FE8A6B008600EF /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		0ED493F620FE8AD8008600EF /* MDFeedBackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDFeedBackModel.swift; sourceTree = "<group>"; };
 		1421CBF820741D4504F48E01 /* Pods-MDFeedBackFront.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDFeedBackFront.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDFeedBackFront/Pods-MDFeedBackFront.release.xcconfig"; sourceTree = "<group>"; };
 		5B68AFA6DC6820ED62EB963E /* Pods_MDFeedBackFront.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDFeedBackFront.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01583716A1EE345A6A19BAA /* Pods-MDFeedBackFront.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDFeedBackFront.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDFeedBackFront/Pods-MDFeedBackFront.debug.xcconfig"; sourceTree = "<group>"; };
@@ -61,14 +71,59 @@
 		0E36A10C20FE8571008321F5 /* MDFeedBackFront */ = {
 			isa = PBXGroup;
 			children = (
+				0ED493F520FE8AB5008600EF /* Models */,
+				0ED493EC20FE897C008600EF /* Helpers */,
+				0ED493EB20FE895D008600EF /* Protocols */,
+				0ED493EA20FE8951008600EF /* Delegates */,
 				0E36A10D20FE8571008321F5 /* AppDelegate.swift */,
-				0E36A10F20FE8571008321F5 /* ViewController.swift */,
 				0E36A11120FE8571008321F5 /* Main.storyboard */,
 				0E36A11420FE8573008321F5 /* Assets.xcassets */,
 				0E36A11620FE8573008321F5 /* LaunchScreen.storyboard */,
 				0E36A11920FE8573008321F5 /* Info.plist */,
+				0ED493E920FE8912008600EF /* ViewControllers */,
 			);
 			path = MDFeedBackFront;
+			sourceTree = "<group>";
+		};
+		0ED493E920FE8912008600EF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0ED493E620FE88EC008600EF /* MessageViewController.swift */,
+				0ED493F320FE8A6B008600EF /* InfoViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0ED493EA20FE8951008600EF /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				0ED493F120FE8A0B008600EF /* MDFeedBackDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		0ED493EB20FE895D008600EF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0ED493EF20FE89E9008600EF /* MDFeedBackProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		0ED493EC20FE897C008600EF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0ED493ED20FE89BF008600EF /* MDFeedBackManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0ED493F520FE8AB5008600EF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0ED493F620FE8AD8008600EF /* MDFeedBackModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		DA24A32CA89164FDB99279AF /* Frameworks */ = {
@@ -202,8 +257,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E36A11020FE8571008321F5 /* ViewController.swift in Sources */,
+				0ED493F720FE8AD8008600EF /* MDFeedBackModel.swift in Sources */,
+				0ED493F020FE89E9008600EF /* MDFeedBackProtocol.swift in Sources */,
+				0ED493F220FE8A0B008600EF /* MDFeedBackDelegate.swift in Sources */,
+				0ED493E720FE88EC008600EF /* MessageViewController.swift in Sources */,
 				0E36A10E20FE8571008321F5 /* AppDelegate.swift in Sources */,
+				0ED493F420FE8A6B008600EF /* InfoViewController.swift in Sources */,
+				0ED493EE20FE89BF008600EF /* MDFeedBackManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
