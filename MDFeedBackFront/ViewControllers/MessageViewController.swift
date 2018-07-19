@@ -2,53 +2,48 @@
 //  MessageViewController.swift
 //  MDFeedBackFront
 //
-//  Created by Андрей Васильев on 17.07.2018.
+//  Created by Андрей Васильев on 19.07.2018.
 //  Copyright © 2018 Андрей Васильев. All rights reserved.
 //
 
-import UIKit
-import Alamofire
-import SwiftyJSON
+//let mdFeedBackModel = MDFeedBackModel()
+//mdFeedBackModel.mdFeedBackModelId = 8
+//mdFeedBackModel.firstName = "Jack"
+//mdFeedBackModel.lastName = "Vasilyev"
+//mdFeedBackModel.text = "i sended message from iOS =)"
 
-class MessageViewController: UIViewController, MDFeedBackDelegate {
-    func getMDFeedBacksLoaded(_ response: DataResponse<Any>?) {
-        mdFeedBackManager.getMDFeedBacksLoaded(response)
-    }
-    
-    func getMDFeedBackLoaded(_ response: DataResponse<Any>?) {
-        mdFeedBackManager.getMDFeedBackLoaded(response)
-    }
-    
-    func postMDFeedBackLoaded(_ response: DataResponse<Any>?) {
-        mdFeedBackManager.postMDFeedBackLoaded(response)
-    }
-    
-    func editMDFeedBackLoaded(_ response: DataResponse<Any>?) {
-        mdFeedBackManager.editMDFeedBackLoaded(response)
-    }
-    
-    func deleteMDFeedBackLoaded(_ response: DataResponse<Any>?) {
-        mdFeedBackManager.deleteMDFeedBackLoaded(response)
-    }
+//mdFeedBackManager.getMDFeedBacks()
+//mdFeedBackManager.getMDFeedBack(7)
+//mdFeedBackManager.postMDFeedBacks(mdFeedBackModel)
+//mdFeedBackManager.editMDFeedBack(mdFeedBackModel)
+//mdFeedBackManager.deleteMDFeedBack(6)
+
+import UIKit
+
+class MessageViewController: UIViewController {
     
     var mdFeedBackManager = MDFeedBackManager()
-
+    
+    @IBOutlet weak var goToInputTextButtun: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        if let image = UIImage(named: "backgroundImage") {
+//            self.view.backgroundColor = UIColor(patternImage: image)
+//        }
+        
         mdFeedBackManager = MDFeedBackManager(self)
-        
-        //        let mdFeedBackModel = MDFeedBackModel()
-        //        mdFeedBackModel.mdFeedBackModelId = 8
-        //        mdFeedBackModel.firstName = "Jack"
-        //        mdFeedBackModel.lastName = "Vasilyev"
-        //        mdFeedBackModel.text = "i sended message from iOS =)"
-        
-        mdFeedBackManager.getMDFeedBacks()
-        //mdFeedBackManager.getMDFeedBack(7)
-        //mdFeedBackManager.postMDFeedBacks(mdFeedBackModel)
-        //mdFeedBackManager.editMDFeedBack(mdFeedBackModel)
-        //mdFeedBackManager.deleteMDFeedBack(6)
-        
+        //mdFeedBackManager.getMDFeedBacks()
+    }
+    
+    //self.navigationController?.pushViewController(secondVC, animated: true)
+    
+    
+    
+    @IBAction func onButtonPressed(_ sender: UIButton) {
+        if let messageTextViewController = self.storyboard?.instantiateViewController(
+            withIdentifier: "MessageTextViewController") as? MessageTextViewController {
+        self.navigationController?.pushViewController(messageTextViewController, animated: true)
+        }
     }
 }

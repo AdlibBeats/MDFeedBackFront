@@ -135,7 +135,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             return _mdFeedBacks
         }
         set (value) {
-            _mdFeedBacks = mdFeedBacks
+            _mdFeedBacks = value
         }
     }
     

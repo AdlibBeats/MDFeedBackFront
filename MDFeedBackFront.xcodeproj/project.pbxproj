@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E1DC18620FF951D0097821E /* MDFeedBackExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DC18520FF951D0097821E /* MDFeedBackExtension.swift */; };
+		0E1DC18D21007D020097821E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DC18C21007D020097821E /* MenuViewController.swift */; };
+		0E1DC18F21007E4B0097821E /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DC18E21007E4B0097821E /* MessageViewController.swift */; };
+		0E1DC19121007E9F0097821E /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DC19021007E9F0097821E /* Notes.swift */; };
+		0E1DC193210099E10097821E /* MessageTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DC192210099E10097821E /* MessageTextViewController.swift */; };
+		0E1DC1972100B23B0097821E /* MessageNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DC1962100B23B0097821E /* MessageNavigationViewController.swift */; };
+		0E1DC1992100B4E00097821E /* InfoNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DC1982100B4E00097821E /* InfoNavigationViewController.swift */; };
 		0E36A10E20FE8571008321F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36A10D20FE8571008321F5 /* AppDelegate.swift */; };
 		0E36A11320FE8571008321F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E36A11120FE8571008321F5 /* Main.storyboard */; };
 		0E36A11520FE8573008321F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E36A11420FE8573008321F5 /* Assets.xcassets */; };
 		0E36A11820FE8573008321F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E36A11620FE8573008321F5 /* LaunchScreen.storyboard */; };
-		0ED493E720FE88EC008600EF /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493E620FE88EC008600EF /* MessageViewController.swift */; };
 		0ED493EE20FE89BF008600EF /* MDFeedBackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493ED20FE89BF008600EF /* MDFeedBackManager.swift */; };
 		0ED493F020FE89E9008600EF /* MDFeedBackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493EF20FE89E9008600EF /* MDFeedBackProtocol.swift */; };
 		0ED493F220FE8A0B008600EF /* MDFeedBackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493F120FE8A0B008600EF /* MDFeedBackDelegate.swift */; };
@@ -21,13 +27,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E1DC18520FF951D0097821E /* MDFeedBackExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDFeedBackExtension.swift; sourceTree = "<group>"; };
+		0E1DC18C21007D020097821E /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		0E1DC18E21007E4B0097821E /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		0E1DC19021007E9F0097821E /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
+		0E1DC192210099E10097821E /* MessageTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextViewController.swift; sourceTree = "<group>"; };
+		0E1DC1962100B23B0097821E /* MessageNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageNavigationViewController.swift; sourceTree = "<group>"; };
+		0E1DC1982100B4E00097821E /* InfoNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNavigationViewController.swift; sourceTree = "<group>"; };
 		0E36A10A20FE8571008321F5 /* MDFeedBackFront.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDFeedBackFront.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E36A10D20FE8571008321F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E36A11220FE8571008321F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E36A11420FE8573008321F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E36A11720FE8573008321F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E36A11920FE8573008321F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0ED493E620FE88EC008600EF /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		0ED493ED20FE89BF008600EF /* MDFeedBackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDFeedBackManager.swift; sourceTree = "<group>"; };
 		0ED493EF20FE89E9008600EF /* MDFeedBackProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDFeedBackProtocol.swift; sourceTree = "<group>"; };
 		0ED493F120FE8A0B008600EF /* MDFeedBackDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDFeedBackDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +62,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E1DC18420FF78D10097821E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0E1DC18520FF951D0097821E /* MDFeedBackExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0E1DC18B21007C410097821E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0E36A11120FE8571008321F5 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		0E36A10120FE8571008321F5 = {
 			isa = PBXGroup;
 			children = (
@@ -71,12 +99,13 @@
 		0E36A10C20FE8571008321F5 /* MDFeedBackFront */ = {
 			isa = PBXGroup;
 			children = (
+				0E1DC18420FF78D10097821E /* Extensions */,
 				0ED493F520FE8AB5008600EF /* Models */,
 				0ED493EC20FE897C008600EF /* Helpers */,
 				0ED493EB20FE895D008600EF /* Protocols */,
 				0ED493EA20FE8951008600EF /* Delegates */,
 				0E36A10D20FE8571008321F5 /* AppDelegate.swift */,
-				0E36A11120FE8571008321F5 /* Main.storyboard */,
+				0E1DC18B21007C410097821E /* Storyboards */,
 				0E36A11420FE8573008321F5 /* Assets.xcassets */,
 				0E36A11620FE8573008321F5 /* LaunchScreen.storyboard */,
 				0E36A11920FE8573008321F5 /* Info.plist */,
@@ -88,8 +117,13 @@
 		0ED493E920FE8912008600EF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0ED493E620FE88EC008600EF /* MessageViewController.swift */,
 				0ED493F320FE8A6B008600EF /* InfoViewController.swift */,
+				0E1DC18C21007D020097821E /* MenuViewController.swift */,
+				0E1DC18E21007E4B0097821E /* MessageViewController.swift */,
+				0E1DC19021007E9F0097821E /* Notes.swift */,
+				0E1DC192210099E10097821E /* MessageTextViewController.swift */,
+				0E1DC1962100B23B0097821E /* MessageNavigationViewController.swift */,
+				0E1DC1982100B4E00097821E /* InfoNavigationViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -258,12 +292,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ED493F720FE8AD8008600EF /* MDFeedBackModel.swift in Sources */,
+				0E1DC18D21007D020097821E /* MenuViewController.swift in Sources */,
 				0ED493F020FE89E9008600EF /* MDFeedBackProtocol.swift in Sources */,
 				0ED493F220FE8A0B008600EF /* MDFeedBackDelegate.swift in Sources */,
-				0ED493E720FE88EC008600EF /* MessageViewController.swift in Sources */,
+				0E1DC18F21007E4B0097821E /* MessageViewController.swift in Sources */,
+				0E1DC1992100B4E00097821E /* InfoNavigationViewController.swift in Sources */,
 				0E36A10E20FE8571008321F5 /* AppDelegate.swift in Sources */,
 				0ED493F420FE8A6B008600EF /* InfoViewController.swift in Sources */,
+				0E1DC193210099E10097821E /* MessageTextViewController.swift in Sources */,
 				0ED493EE20FE89BF008600EF /* MDFeedBackManager.swift in Sources */,
+				0E1DC1972100B23B0097821E /* MessageNavigationViewController.swift in Sources */,
+				0E1DC18620FF951D0097821E /* MDFeedBackExtension.swift in Sources */,
+				0E1DC19121007E9F0097821E /* Notes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

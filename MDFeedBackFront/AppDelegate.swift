@@ -21,35 +21,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        
-        let messageViewController = getNewViewController(.message, "MD Feedback", "Message", UIImage(named: "messageIcon"), UIImage(named: "messageIcon"))
-        
-        let button = UIButton(frame: CGRect(
-            x: 0, y: 0,
-            width: 160, height: 40))
-        
-        button.center.x = (self.window?.center.x)!
-        button.center.y = (self.window?.center.y)!
-        
-        button.layer.cornerRadius = button.frame.size.height / 2
-        button.backgroundColor = UIColor.white
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.setTitleColor(UIColor.orange, for: .highlighted)
-        button.setTitle("Hello world", for: .normal)
-        
-        messageViewController.view.addSubview(button)
-        
-        let infoViewControl = getNewViewController(.info, "MD Information", "Information", UIImage(named: "infoIcon"), UIImage(named: "infoIcon"))
-        
-        let messageNavigationController = UINavigationController(rootViewController: messageViewController)
-        let infoNavigationController = UINavigationController(rootViewController: infoViewControl)
-        
-        let tabBarController = UITabBarController()
-        tabBarController.setViewControllers([messageNavigationController, infoNavigationController], animated: true)
-        
-        self.window?.rootViewController = tabBarController
-        self.window?.makeKeyAndVisible()
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        
+//        let messageViewController = getNewViewController(.message, "MD Feedback", "Message", UIImage(named: "messageIcon"), UIImage(named: "messageIcon"))
+//
+//        let infoViewController = getNewViewController(.info, "MD Information", "Information", UIImage(named: "infoIcon"), UIImage(named: "infoIcon"))
+//
+//        let messageNavigationController = UINavigationController(rootViewController: messageViewController)
+//        let infoNavigationController = UINavigationController(rootViewController: infoViewController)
+//
+//        let tabBarController = UITabBarController()
+//        tabBarController.setViewControllers([messageNavigationController, infoNavigationController], animated: true)
+//
+//        self.window?.rootViewController = tabBarController
+//        self.window?.makeKeyAndVisible()
         
         return true
     }
