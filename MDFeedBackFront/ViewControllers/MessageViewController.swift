@@ -28,17 +28,10 @@ class MessageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if let image = UIImage(named: "backgroundImage") {
-//            self.view.backgroundColor = UIColor(patternImage: image)
-//        }
+        self.title = "Home"
         
         mdFeedBackManager = MDFeedBackManager(self)
-        //mdFeedBackManager.getMDFeedBacks()
     }
-    
-    //self.navigationController?.pushViewController(secondVC, animated: true)
-    
-    
     
     @IBAction func onButtonPressed(_ sender: UIButton) {
         if let messageTextViewController = self.storyboard?.instantiateViewController(

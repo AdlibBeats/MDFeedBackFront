@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Message-->
+        <!--Home-->
         <scene sceneID="KPE-bf-ug2">
             <objects>
-                <navigationController id="vrj-3d-HkK" customClass="MessageNavigationViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController title="Home" id="vrj-3d-HkK" customClass="MessageNavigationViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Message" image="messageIcon" selectedImage="messageIcon" id="NuW-v3-4h1"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xbd-WE-kf9">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
@@ -30,7 +30,7 @@
         <!--Home-->
         <scene sceneID="Zx5-W5-ERV">
             <objects>
-                <viewController storyboardIdentifier="MessageViewController" id="d5X-0P-zHO" customClass="MessageViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessageViewController" title="Home" id="d5X-0P-zHO" customClass="MessageViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IT0-NY-lRx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,7 +57,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="namePhonePad" keyboardAppearance="light" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Фамилия" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CNo-mZ-GEo">
-                                <rect key="frame" x="74" y="315" width="172" height="30"/>
+                                <rect key="frame" x="74" y="314" width="172" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="RKJ-04-lmu"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="172" id="jpS-ED-HIf"/>
@@ -155,10 +155,10 @@
             </objects>
             <point key="canvasLocation" x="1494" y="-625"/>
         </scene>
-        <!--MD Feedback-->
+        <!--Home-->
         <scene sceneID="sWP-7W-y6V">
             <objects>
-                <tabBarController id="9Tq-6G-oKe" customClass="MenuViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController title="Home" id="9Tq-6G-oKe" customClass="MenuViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="MD Feedback" id="IO7-zl-I8l"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="q4F-JZ-dHa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -191,10 +191,10 @@
             </objects>
             <point key="canvasLocation" x="41" y="112"/>
         </scene>
-        <!--MD Feedback-->
+        <!--Information-->
         <scene sceneID="4qj-ik-9rA">
             <objects>
-                <viewController id="qyS-yt-JmT" customClass="InfoViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Information" id="qyS-yt-JmT" customClass="InfoViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sDg-hJ-kou">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,7 +235,7 @@
                         <viewLayoutGuide key="safeArea" id="aAH-HA-B3F"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Info" image="infoIcon" selectedImage="infoIcon" id="bw9-RX-A5f"/>
-                    <navigationItem key="navigationItem" title="MD Feedback" id="td4-j9-kEk"/>
+                    <navigationItem key="navigationItem" title="Information" id="td4-j9-kEk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Yl-eQ-2NZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
