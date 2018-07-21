@@ -14,6 +14,7 @@
 		0E1DC193210099E10097821E /* MessageTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DC192210099E10097821E /* MessageTextViewController.swift */; };
 		0E1DC1972100B23B0097821E /* MessageNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DC1962100B23B0097821E /* MessageNavigationViewController.swift */; };
 		0E1DC1992100B4E00097821E /* InfoNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1DC1982100B4E00097821E /* InfoNavigationViewController.swift */; };
+		0E32C36421020F47009B097C /* SendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E32C36321020F46009B097C /* SendingViewController.swift */; };
 		0E36A10E20FE8571008321F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E36A10D20FE8571008321F5 /* AppDelegate.swift */; };
 		0E36A11320FE8571008321F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E36A11120FE8571008321F5 /* Main.storyboard */; };
 		0E36A11520FE8573008321F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E36A11420FE8573008321F5 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		0E1DC192210099E10097821E /* MessageTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextViewController.swift; sourceTree = "<group>"; };
 		0E1DC1962100B23B0097821E /* MessageNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageNavigationViewController.swift; sourceTree = "<group>"; };
 		0E1DC1982100B4E00097821E /* InfoNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNavigationViewController.swift; sourceTree = "<group>"; };
+		0E32C36321020F46009B097C /* SendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingViewController.swift; sourceTree = "<group>"; };
 		0E36A10A20FE8571008321F5 /* MDFeedBackFront.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDFeedBackFront.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E36A10D20FE8571008321F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E36A11220FE8571008321F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				0E1DC192210099E10097821E /* MessageTextViewController.swift */,
 				0E1DC1962100B23B0097821E /* MessageNavigationViewController.swift */,
 				0E1DC1982100B4E00097821E /* InfoNavigationViewController.swift */,
+				0E32C36321020F46009B097C /* SendingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				0ED493F720FE8AD8008600EF /* MDFeedBackModel.swift in Sources */,
 				0E1DC18D21007D020097821E /* MenuViewController.swift in Sources */,
 				0ED493F020FE89E9008600EF /* MDFeedBackProtocol.swift in Sources */,
+				0E32C36421020F47009B097C /* SendingViewController.swift in Sources */,
 				0ED493F220FE8A0B008600EF /* MDFeedBackDelegate.swift in Sources */,
 				0E1DC18F21007E4B0097821E /* MessageViewController.swift in Sources */,
 				0E1DC1992100B4E00097821E /* InfoNavigationViewController.swift in Sources */,
@@ -451,7 +455,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GKK9BFF346;
 				INFOPLIST_FILE = MDFeedBackFront/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -471,7 +475,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GKK9BFF346;
 				INFOPLIST_FILE = MDFeedBackFront/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

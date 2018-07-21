@@ -39,8 +39,13 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         _ parameters: Parameters? = nil,
         _ apiUrl: String = "api/MDFeedBacks/") -> DataRequest? {
         
-        let parameter = parameters?["MDFeedBackModelId"] ?? nil
-        let url = "\(baseUrl)\(apiUrl)\(parameter ?? "")"
+        let parameter = (parameters?["MDFeedBackModelId"] as? Int) ?? 0
+        var stringParameter = "\(parameter)"
+        if parameter == 0 {
+            stringParameter = ""
+        }
+    
+        let url = "\(baseUrl)\(apiUrl)\(stringParameter)"
         isLoaded = false
         switch httpMethod {
         case .get:
@@ -52,7 +57,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
                 headers: nil).responseJSON {
                     response in
                     
-                    if parameter == nil {
+                    if parameter == 0 {
                         self.delegate?.getMDFeedBacksLoaded(response)
                     }
                     else {
@@ -129,6 +134,59 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         return mdFeedBackModel
     }
     
+    private func log(_ response: DataResponse<Any>?) -> Bool {
+        if let httpResponse = response?.response {
+            if httpResponse.statusCode != 200 {
+                if let data = response?.data {
+                    do {
+                        let jsonData = try JSON(
+                            data: data,
+                            options: JSONSerialization
+                                .ReadingOptions
+                                .mutableLeaves)
+                        
+                        if let dictionary = jsonData.dictionary {
+                            if let message = dictionary["Message"] {
+                                print(message)
+                                
+                                switch (message) {
+                                case "The requested resource does not support http method 'POST'.":
+                                    return false
+                                default:
+                                    return true
+                                }
+                            }
+                            else {
+                                print("Не удалось найти значение по ключу 'Message'")
+                                return false
+                            }
+                        }
+                        else {
+                            print("Словарь json пустой")
+                            return false
+                        }
+                    }
+                    catch {
+                        print("Не удалось сконвертировать полученные данные в формат json")
+                        return false
+                    }
+                }
+                else {
+                    print("Не удалось получить данные с хостинга")
+                    return false
+                }
+            }
+            else {
+                print("Запрос успешно выполнен")
+                return true
+            }
+        }
+        else {
+            print("Не удалось получить данные с хостинга")
+            return false
+        }
+    }
+    
     private var _mdFeedBacks = [MDFeedBackModel]()
     open var mdFeedBacks: [MDFeedBackModel] {
         get {
@@ -159,7 +217,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         }
     }
     
-    open func getMDFeedBacksLoaded(_ response: DataResponse<Any>?) -> Void {
+    open func getMDFeedBacksLoaded(_ response: DataResponse<Any>?) -> Bool {
         if let data = response?.data {
             do {
                 let jsonData = try JSON(
@@ -179,18 +237,25 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
                             print("id: \(mdFeedBackModel.mdFeedBackModelId) name: \(mdFeedBackModel.firstName) \(mdFeedBackModel.lastName)\n text: \(mdFeedBackModel.text)")
                         }
                     }
+                    return true
+                }
+                else {
+                    print("Массив json пустой")
+                    return false
                 }
             }
             catch {
                 print("Не удалось сконвертировать полученные данные в формат json")
+                return false
             }
         }
         else {
             print("Не удалось получить данные с хостинга")
+            return false
         }
     }
     
-    open func getMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Void {
+    open func getMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         if let data = response?.data {
             do {
                 let jsonData = try JSON(
@@ -203,30 +268,35 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
                     mdFeedBack = getNewMDFeedBackModelFromDictionary(dictionary)
                     
                     print("id: \(mdFeedBack.mdFeedBackModelId) name: \(mdFeedBack.firstName) \(mdFeedBack.lastName)\n text: \(mdFeedBack.text)")
+                    
+                    return true
+                }
+                else {
+                    print("Словарь json пустой")
+                    return false
                 }
             }
             catch {
                 print("Не удалось сконвертировать полученные данные в формат json")
+                return false
             }
         }
         else {
             print("Не удалось получить данные с хостинга")
+            return false
         }
     }
     
-    open func postMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Void {
-        //TODO: Check response
-        print("Новое сообщение успешно добавлено")
+    open func postMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
+        return log(response)
     }
     
-    open func editMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Void {
-        //TODO: Check response
-        print("Сообщение успешно отредактировано")
+    open func editMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
+        return log(response)
     }
     
-    open func deleteMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Void {
-        //TODO: Check response
-        print("Сообщение успешно удалено")
+    open func deleteMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
+        return log(response)
     }
     
     open func getMDFeedBacks() -> Void {

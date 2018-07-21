@@ -9,9 +9,9 @@
 import Alamofire
 
 protocol MDFeedBackDelegate {
-    func getMDFeedBacksLoaded(_ response: DataResponse<Any>?)
-    func getMDFeedBackLoaded(_ response: DataResponse<Any>?)
-    func postMDFeedBackLoaded(_ response: DataResponse<Any>?)
-    func editMDFeedBackLoaded(_ response: DataResponse<Any>?)
-    func deleteMDFeedBackLoaded(_ response: DataResponse<Any>?)
+    func getMDFeedBacksLoaded(_ response: DataResponse<Any>?) -> Bool
+    func getMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool
+    func postMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool
+    func editMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool
+    func deleteMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool
 }

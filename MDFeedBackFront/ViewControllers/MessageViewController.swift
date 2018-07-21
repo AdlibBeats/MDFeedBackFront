@@ -20,23 +20,74 @@
 
 import UIKit
 
+//extension MessageViewController {
+//    func hideKeyboardWhenTappedAround() {
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MessageViewController.dismissKeyboard))
+//        tap.cancelsTouchesInView = false
+//        view.addGestureRecognizer(tap)
+//    }
+//
+//    @objc func dismissKeyboard() {
+//        view.endEditing(true)
+//    }
+//}
+
 class MessageViewController: UIViewController {
-    
-    var mdFeedBackManager = MDFeedBackManager()
-    
+    //@IBOutlet weak var firstNameTextField: UITextField!
+    //@IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var goToInputTextButtun: UIButton!
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.view.isHidden = true
+        //self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.isHidden = false
+        //self.navigationController?.navigationBar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Home"
+        goToInputTextButtun.layer.cornerRadius = goToInputTextButtun.bounds.height / 2.5
         
-        mdFeedBackManager = MDFeedBackManager(self)
+        //self.hideKeyboardWhenTappedAround()
+        
+        //firstNameTextField.delegate = self
+        //lastNameTextField.delegate = self
+        
+//        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillShow, object: nil, queue: nil) { (sender) in
+//            self.view.frame.origin.y = -102
+//        }
+        
+        
+        
+//        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillHide, object: nil, queue: nil) { (sender) in
+//            self.view.frame.origin.y = 0.0
+//        }
     }
     
-    @IBAction func onButtonPressed(_ sender: UIButton) {
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//
+//        if firstNameTextField == textField {
+//            lastNameTextField.becomeFirstResponder()
+//        }
+//        else if lastNameTextField == textField {
+//            goToMessageTextViewController()
+//        }
+//
+//        return true
+//    }
+    
+    @IBAction func onButtonPressed(_ sender: UIButton) -> Void {
+        goToMessageTextViewController()
+    }
+    
+    func goToMessageTextViewController() -> Void {
         if let messageTextViewController = self.storyboard?.instantiateViewController(
             withIdentifier: "MessageTextViewController") as? MessageTextViewController {
-        self.navigationController?.pushViewController(messageTextViewController, animated: true)
+            self.navigationController?.pushViewController(messageTextViewController, animated: true)
         }
     }
 }

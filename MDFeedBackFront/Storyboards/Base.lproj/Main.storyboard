@@ -10,14 +10,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
+        <!--Message-->
         <scene sceneID="KPE-bf-ug2">
             <objects>
-                <navigationController title="Home" id="vrj-3d-HkK" customClass="MessageNavigationViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Message" image="messageIcon" selectedImage="messageIcon" id="NuW-v3-4h1"/>
+                <navigationController id="vrj-3d-HkK" customClass="MessageNavigationViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Message" image="messageIcon" selectedImage="messageIcon" id="NuW-v3-4h1">
+                        <color key="badgeColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xbd-WE-kf9">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="d5X-0P-zHO" kind="relationship" relationship="rootViewController" id="30Q-Nk-IMo"/>
@@ -27,143 +30,223 @@
             </objects>
             <point key="canvasLocation" x="39" y="-625"/>
         </scene>
-        <!--Home-->
+        <!--Message-->
         <scene sceneID="Zx5-W5-ERV">
             <objects>
-                <viewController storyboardIdentifier="MessageViewController" title="Home" id="d5X-0P-zHO" customClass="MessageViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessageViewController" title="Message" id="d5X-0P-zHO" customClass="MessageViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IT0-NY-lRx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kp0-va-Njv">
-                                <rect key="frame" x="74" y="449" width="172" height="30"/>
+                                <rect key="frame" x="45" y="449" width="230" height="55"/>
+                                <color key="backgroundColor" red="1" green="0.4760972798957761" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="172" id="e0a-m1-pT4"/>
+                                    <constraint firstAttribute="height" constant="55" id="nvq-l1-6qz"/>
+                                    <constraint firstAttribute="width" constant="230" id="sYT-Yc-V2W"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="vmD-Jy-d2Z"/>
                                 </constraints>
-                                <state key="normal" title="Перейти к сообщению"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="20"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Написать сообщение">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="onButtonPressed:" destination="d5X-0P-zHO" eventType="touchUpInside" id="BI6-lP-Nxu"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vxY-JN-igh">
-                                <rect key="frame" x="74" y="276" width="172" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Добро пожаловать на MD Feedback" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BT-Ke-l3V">
+                                <rect key="frame" x="30" y="84" width="260" height="72"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="172" id="a9G-h0-eZe"/>
-                                    <constraint firstAttribute="height" constant="30" id="aoS-Wj-22c"/>
-                                    <constraint firstAttribute="width" constant="172" id="wk3-zB-Ejp"/>
+                                    <constraint firstAttribute="height" constant="72" id="4qa-AS-mTt"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="bvv-cm-KUR"/>
+                                    <constraint firstAttribute="width" constant="260" id="gkR-rM-LjC"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad" keyboardAppearance="light" enablesReturnKeyAutomatically="YES" textContentType="name"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Фамилия" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CNo-mZ-GEo">
-                                <rect key="frame" x="74" y="314" width="172" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="RKJ-04-lmu"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="172" id="jpS-ED-HIf"/>
-                                    <constraint firstAttribute="width" constant="172" id="me4-ip-mas"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad" keyboardAppearance="light" enablesReturnKeyAutomatically="YES" textContentType="family-name"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Введите ваше имя" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BT-Ke-l3V">
-                                <rect key="frame" x="74" y="104" width="172" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="172" id="pa9-9x-pja"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" red="0.53704660404757187" green="0.53704660404757187" blue="0.53704660404757187" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mdLogo" translatesAutoresizingMaskIntoConstraints="NO" id="GUC-eA-FyL">
+                                <rect key="frame" x="37" y="219" width="260" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="kgR-R7-OGr"/>
+                                    <constraint firstAttribute="height" constant="130" id="noH-ub-brc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="kp0-va-Njv" firstAttribute="centerX" secondItem="OZn-Q8-5F1" secondAttribute="centerX" id="3I7-QT-fhn"/>
-                            <constraint firstItem="CNo-mZ-GEo" firstAttribute="height" secondItem="vxY-JN-igh" secondAttribute="height" id="7sA-H3-Re5"/>
-                            <constraint firstItem="9BT-Ke-l3V" firstAttribute="top" secondItem="OZn-Q8-5F1" secondAttribute="top" constant="40" id="BP2-fN-5b8"/>
-                            <constraint firstItem="9BT-Ke-l3V" firstAttribute="centerX" secondItem="OZn-Q8-5F1" secondAttribute="centerX" id="Fev-5g-o1v"/>
-                            <constraint firstItem="OZn-Q8-5F1" firstAttribute="bottom" secondItem="kp0-va-Njv" secondAttribute="bottom" constant="40" id="GzC-cP-ESL"/>
-                            <constraint firstItem="CNo-mZ-GEo" firstAttribute="width" secondItem="vxY-JN-igh" secondAttribute="width" id="MU0-gS-oPp"/>
-                            <constraint firstItem="vxY-JN-igh" firstAttribute="centerX" secondItem="OZn-Q8-5F1" secondAttribute="centerX" id="RiT-EV-p3C"/>
-                            <constraint firstItem="vxY-JN-igh" firstAttribute="centerY" secondItem="OZn-Q8-5F1" secondAttribute="centerY" id="TKm-ZO-h8I"/>
-                            <constraint firstItem="CNo-mZ-GEo" firstAttribute="top" secondItem="vxY-JN-igh" secondAttribute="bottom" constant="8" symbolic="YES" id="Tau-Sb-PfS"/>
-                            <constraint firstItem="CNo-mZ-GEo" firstAttribute="leading" secondItem="vxY-JN-igh" secondAttribute="leading" id="xfJ-e5-CIV"/>
+                            <constraint firstItem="GUC-eA-FyL" firstAttribute="centerY" secondItem="OZn-Q8-5F1" secondAttribute="centerY" constant="-7.5" id="4sR-FH-Raa"/>
+                            <constraint firstItem="9BT-Ke-l3V" firstAttribute="top" secondItem="OZn-Q8-5F1" secondAttribute="top" constant="20" id="5pO-Nl-che"/>
+                            <constraint firstItem="9BT-Ke-l3V" firstAttribute="centerX" secondItem="OZn-Q8-5F1" secondAttribute="centerX" id="Ody-Oj-XGe"/>
+                            <constraint firstItem="GUC-eA-FyL" firstAttribute="centerX" secondItem="OZn-Q8-5F1" secondAttribute="centerX" constant="7" id="izf-ez-K6W"/>
+                            <constraint firstItem="kp0-va-Njv" firstAttribute="centerX" secondItem="OZn-Q8-5F1" secondAttribute="centerX" id="u8t-9R-vKw"/>
+                            <constraint firstItem="OZn-Q8-5F1" firstAttribute="bottom" secondItem="kp0-va-Njv" secondAttribute="bottom" constant="15" id="xMg-Wz-iQc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OZn-Q8-5F1"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Message" image="messageIcon" selectedImage="messageIcon" id="mCa-c4-kyJ"/>
-                    <navigationItem key="navigationItem" title="Home" id="2Nq-0y-Jyj"/>
+                    <tabBarItem key="tabBarItem" title="Message" image="messageIcon" selectedImage="messageIcon" id="mCa-c4-kyJ">
+                        <color key="badgeColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="2Nq-0y-Jyj"/>
                     <connections>
                         <outlet property="goToInputTextButtun" destination="kp0-va-Njv" id="JoP-3r-NOb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeY-tY-5z4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="773" y="-625"/>
+            <point key="canvasLocation" x="772.5" y="-625.35211267605632"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="Ooj-jZ-81t">
+            <objects>
+                <tabBarController id="Bdr-Wn-4uJ" customClass="MenuViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BG1-WF-RJJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xbW-sf-eM6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1485" y="-625"/>
+        </scene>
+        <!--Message-->
+        <scene sceneID="0ko-6v-ike">
+            <objects>
+                <navigationController id="zbX-1P-tfL" customClass="MessageNavigationViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Message" image="messageIcon" selectedImage="messageIcon" id="8m3-vF-3FJ">
+                        <color key="badgeColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qmd-jL-95I">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Od0-Rj-zYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2220" y="-1131"/>
         </scene>
         <!--Send message-->
         <scene sceneID="SRq-zj-rkA">
             <objects>
-                <viewController storyboardIdentifier="MessageTextViewController" title="Send message" id="0Fq-a8-6QT" customClass="MessageTextViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessageTextViewController" id="0Fq-a8-6QT" customClass="MessageTextViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="mm" id="27T-U9-r9u">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rit-Mm-a8n">
-                                <rect key="frame" x="75" y="496" width="170" height="30"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRU-Hx-XXc">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwn-r3-BRZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="170" id="lUb-Kq-Hjy"/>
+                                    <constraint firstAttribute="trailing" secondItem="hwn-r3-BRZ" secondAttribute="trailing" id="2kb-XC-r6t"/>
+                                    <constraint firstItem="hwn-r3-BRZ" firstAttribute="leading" secondItem="WRU-Hx-XXc" secondAttribute="leading" id="PeU-5v-BLV"/>
+                                    <constraint firstItem="hwn-r3-BRZ" firstAttribute="centerX" secondItem="WRU-Hx-XXc" secondAttribute="centerX" id="hk6-Pc-qA4"/>
+                                    <constraint firstItem="hwn-r3-BRZ" firstAttribute="top" secondItem="WRU-Hx-XXc" secondAttribute="top" id="i6O-5K-UeE"/>
+                                    <constraint firstItem="hwn-r3-BRZ" firstAttribute="centerY" secondItem="WRU-Hx-XXc" secondAttribute="centerY" id="z3l-s7-yhU"/>
+                                    <constraint firstAttribute="bottom" secondItem="hwn-r3-BRZ" secondAttribute="bottom" id="zwW-ja-yll"/>
                                 </constraints>
-                                <state key="normal" title="Отправить сообщение"/>
-                                <connections>
-                                    <action selector="onButtonPressed:" destination="d5X-0P-zHO" eventType="touchUpInside" id="kXv-UO-bfn"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите текст сообщения" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cK0-Gc-tYm">
-                                <rect key="frame" x="74" y="51" width="172" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="172" id="VCA-sY-7hZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Сообщение" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="orT-tH-g2x">
-                                <rect key="frame" x="74" y="279" width="172" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="172" id="BIJ-vt-xdD"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad" keyboardAppearance="light" enablesReturnKeyAutomatically="YES" textContentType="name"/>
-                            </textField>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="cK0-Gc-tYm" firstAttribute="top" secondItem="bYr-zr-H40" secondAttribute="top" constant="31" id="H8d-Wm-HSJ"/>
-                            <constraint firstItem="cK0-Gc-tYm" firstAttribute="centerX" secondItem="bYr-zr-H40" secondAttribute="centerX" id="R9f-jn-BG2"/>
-                            <constraint firstItem="rit-Mm-a8n" firstAttribute="centerX" secondItem="bYr-zr-H40" secondAttribute="centerX" id="U4T-fb-3p0"/>
-                            <constraint firstItem="orT-tH-g2x" firstAttribute="centerY" secondItem="bYr-zr-H40" secondAttribute="centerY" id="XZ8-fs-kaN"/>
-                            <constraint firstItem="orT-tH-g2x" firstAttribute="centerX" secondItem="bYr-zr-H40" secondAttribute="centerX" id="ioR-ij-4Y4"/>
-                            <constraint firstItem="bYr-zr-H40" firstAttribute="bottom" secondItem="rit-Mm-a8n" secondAttribute="bottom" constant="42" id="tDf-ph-kr5"/>
+                            <constraint firstItem="WRU-Hx-XXc" firstAttribute="leading" secondItem="bYr-zr-H40" secondAttribute="leading" id="FrR-gk-piw"/>
+                            <constraint firstItem="WRU-Hx-XXc" firstAttribute="trailing" secondItem="bYr-zr-H40" secondAttribute="trailing" id="IGM-FX-h7E"/>
+                            <constraint firstItem="WRU-Hx-XXc" firstAttribute="centerY" secondItem="bYr-zr-H40" secondAttribute="centerY" id="Z3k-6b-qPj"/>
+                            <constraint firstItem="WRU-Hx-XXc" firstAttribute="top" secondItem="bYr-zr-H40" secondAttribute="top" id="d5g-Ox-ZM1"/>
+                            <constraint firstItem="WRU-Hx-XXc" firstAttribute="centerX" secondItem="bYr-zr-H40" secondAttribute="centerX" id="eSL-oP-Bx2"/>
+                            <constraint firstItem="WRU-Hx-XXc" firstAttribute="bottom" secondItem="bYr-zr-H40" secondAttribute="bottom" id="i8z-Oz-zwN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bYr-zr-H40"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Message" image="messageIcon" selectedImage="messageIcon" id="eXo-yZ-dRD"/>
-                    <navigationItem key="navigationItem" title="MD Feedback" id="ceu-pA-CCb"/>
+                    <tabBarItem key="tabBarItem" title="Message" image="messageIcon" selectedImage="messageIcon" id="eXo-yZ-dRD">
+                        <color key="badgeColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="Send message" id="ceu-pA-CCb">
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="aNO-dK-UPW">
+                            <connections>
+                                <action selector="onSendItemTouched:" destination="0Fq-a8-6QT" id="Plf-IV-sj0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="hwn-r3-BRZ" id="Spf-AY-O8j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ee5-M1-Amp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1494" y="-625"/>
+            <point key="canvasLocation" x="3052.5" y="-1131.338028169014"/>
         </scene>
-        <!--Home-->
+        <!--Menu View Controller-->
+        <scene sceneID="sJM-Ve-OLS">
+            <objects>
+                <tabBarController id="uha-N1-R6g" customClass="MenuViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TFb-Zi-710">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="R2m-HB-89L" kind="relationship" relationship="viewControllers" id="Qjl-rU-Mcq"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fbN-BI-Ydd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3864" y="-1131"/>
+        </scene>
+        <!--Message-->
+        <scene sceneID="Fjw-r5-CTD">
+            <objects>
+                <navigationController id="R2m-HB-89L" customClass="MessageNavigationViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Message" image="messageIcon" selectedImage="messageIcon" id="4FF-HN-zeS">
+                        <color key="badgeColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cwg-aW-LZB">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="5kC-qd-MEF" kind="relationship" relationship="rootViewController" id="aVm-Ky-wkL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="heS-Gq-q96" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4751" y="-1593"/>
+        </scene>
+        <!--Sending-->
+        <scene sceneID="VPO-eO-HTp">
+            <objects>
+                <viewController storyboardIdentifier="SendingViewController" id="5kC-qd-MEF" customClass="SendingViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="90H-22-oxW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="7e0-Bn-Ak2"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Sending" id="7VX-Zs-sEE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9b6-Yr-TPR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5482.5" y="-1594.0140845070423"/>
+        </scene>
+        <!--MD Feedback-->
         <scene sceneID="sWP-7W-y6V">
             <objects>
-                <tabBarController title="Home" id="9Tq-6G-oKe" customClass="MenuViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MenuViewController" id="9Tq-6G-oKe" customClass="MenuViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="MD Feedback" id="IO7-zl-I8l"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="q4F-JZ-dHa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="vrj-3d-HkK" kind="relationship" relationship="viewControllers" id="fgX-Iq-68t"/>
@@ -178,10 +261,13 @@
         <scene sceneID="imo-9M-OTT">
             <objects>
                 <navigationController id="zAQ-IG-ote" customClass="InfoNavigationViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Info" image="infoIcon" selectedImage="infoIcon" id="BLO-5I-G6G"/>
+                    <tabBarItem key="tabBarItem" title="Info" image="infoIcon" selectedImage="infoIcon" id="BLO-5I-G6G">
+                        <color key="badgeColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iGD-X9-iOd">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="qyS-yt-JmT" kind="relationship" relationship="rootViewController" id="Gob-MU-BwP"/>
@@ -202,17 +288,11 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NGG-OQ-aIr">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1T-SI-Fsk">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1T-SI-Fsk">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
-                                        <attributedString key="attributedText">
-                                            <fragment>
-                                                <string key="content">Mobile Dimension – разработчик мобильных и IT-решений полного цикла. Мы проектируем и разрабатываем мобильные приложения и веб-сервисы, призванные упрощать, совершенствовать и автоматизировать процессы и задачи бизнеса. Среди наших компетенций продажа и внедрение продуктов таких компаний, как Samsung, IBM, VMWare, Microsoft и SAP. Mobile Dimension – команда талантливых разработчиков, дизайнеров, тестировщиков и конусльтантов. Мы ценим надежность, ответственность и новаторство и стремимся сделать этот мир немного лучше и удобнее с помощью наших технологичных и элегантных решений. Наши клиенты – российские и международные корпорации, в нашем портфеле уже более 50 реализованных проектов разной сложности и в разных сегментах бизнеса.</string>
-                                                <attributes>
-                                                    <font key="NSFont" size="22" name="Helvetica-Light"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="30" firstLineHeadIndent="20" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <string key="text">Mobile Dimension – разработчик мобильных и IT-решений полного цикла. Мы проектируем и разрабатываем мобильные приложения и веб-сервисы, призванные упрощать, совершенствовать и автоматизировать процессы и задачи бизнеса. Среди наших компетенций продажа и внедрение продуктов таких компаний, как Samsung, IBM, VMWare, Microsoft и SAP. Mobile Dimension – команда талантливых разработчиков, дизайнеров, тестировщиков и конусльтантов. Мы ценим надежность, ответственность и новаторство и стремимся сделать этот мир немного лучше и удобнее с помощью наших технологичных и элегантных решений. Наши клиенты – российские и международные корпорации, в нашем портфеле уже более 50 реализованных проектов разной сложности и в разных сегментах бизнеса.</string>
+                                        <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -244,6 +324,7 @@
     </scenes>
     <resources>
         <image name="infoIcon" width="32" height="32"/>
+        <image name="mdLogo" width="1008" height="504"/>
         <image name="messageIcon" width="32" height="32"/>
     </resources>
 </document>
