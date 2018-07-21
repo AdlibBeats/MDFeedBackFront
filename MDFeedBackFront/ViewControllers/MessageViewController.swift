@@ -35,16 +35,18 @@ import UIKit
 class MessageViewController: UIViewController {
     //@IBOutlet weak var firstNameTextField: UITextField!
     //@IBOutlet weak var lastNameTextField: UITextField!
+    
+    
     @IBOutlet weak var goToInputTextButtun: UIButton!
     
     override func viewWillDisappear(_ animated: Bool) {
         self.view.isHidden = true
-        //self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.view.isHidden = false
-        //self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -66,6 +68,14 @@ class MessageViewController: UIViewController {
 //        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillHide, object: nil, queue: nil) { (sender) in
 //            self.view.frame.origin.y = 0.0
 //        }
+        
+        rotated()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    @objc func rotated() -> Void {
+        //rotation
     }
     
 //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {

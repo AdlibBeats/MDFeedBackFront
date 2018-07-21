@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MessageTextViewController: UIViewController, UITextFieldDelegate {
+class MessageTextViewController: UIViewController {
     
     var mdFeedBackManager = MDFeedBackManager()
     
-    @IBOutlet weak var textField: UITextView!
+    @IBOutlet weak var textView: UITextView!
     
     override func viewWillDisappear(_ animated: Bool) {
         self.view.isHidden = true
@@ -27,7 +27,7 @@ class MessageTextViewController: UIViewController, UITextFieldDelegate {
         
         mdFeedBackManager = MDFeedBackManager(self)
         
-        //textField.becomeFirstResponder()
+        textView.becomeFirstResponder()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateUITextView), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
@@ -39,19 +39,19 @@ class MessageTextViewController: UIViewController, UITextFieldDelegate {
             if let nsValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
                 let keyboardFrame = self.view.convert(nsValue.cgRectValue, to: self.view.window)
                 if sender.name == Notification.Name.UIKeyboardWillHide {
-                    textField.contentInset = UIEdgeInsets.zero
+                    textView.contentInset = UIEdgeInsets.zero
                 }
                 else {
-                    textField.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.height, 0)
-                    textField.scrollIndicatorInsets = textField.contentInset
+                    textView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.height, 0)
+                    textView.scrollIndicatorInsets = textView.contentInset
                 }
             }
         }
-        textField.scrollRangeToVisible(textField.selectedRange)
+        textView.scrollRangeToVisible(textView.selectedRange)
     }
     
     @IBAction func onSendItemTouched(_ sender: UIBarButtonItem) {
-        if textField.text.isEmpty {
+        if textView.text.isEmpty {
             showError("Поле сообщения должно быть заполнено")
             return
         }
@@ -59,10 +59,15 @@ class MessageTextViewController: UIViewController, UITextFieldDelegate {
         let mdFeedBackModel = MDFeedBackModel()
         mdFeedBackModel.firstName = "default"
         mdFeedBackModel.lastName = "default"
-        mdFeedBackModel.text = self.textField.text
+        mdFeedBackModel.text = self.textView.text
         mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
         //showAlert()
     }
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//        self.view.endEditing(true)
+//    }
     
     
     
