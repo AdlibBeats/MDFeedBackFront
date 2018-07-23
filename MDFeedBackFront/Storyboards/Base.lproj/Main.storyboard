@@ -41,28 +41,19 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Добро пожаловать на MD Feedback" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BT-Ke-l3V">
                                 <rect key="frame" x="30" y="84" width="260" height="72"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="4qa-AS-mTt"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="bvv-cm-KUR"/>
-                                    <constraint firstAttribute="width" constant="260" id="gkR-rM-LjC"/>
+                                    <constraint firstAttribute="height" constant="72" id="jeq-xV-sBi"/>
+                                    <constraint firstAttribute="width" constant="260" id="mTK-TX-GRj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <color key="textColor" red="0.53704660404757187" green="0.53704660404757187" blue="0.53704660404757187" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mdLogo" translatesAutoresizingMaskIntoConstraints="NO" id="GUC-eA-FyL">
-                                <rect key="frame" x="37" y="219" width="260" height="130"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="260" id="kgR-R7-OGr"/>
-                                    <constraint firstAttribute="height" constant="130" id="noH-ub-brc"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kp0-va-Njv">
-                                <rect key="frame" x="45" y="458" width="230" height="55"/>
+                                <rect key="frame" x="45" y="444" width="230" height="55"/>
                                 <color key="backgroundColor" red="1" green="0.4760972798957761" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="nvq-l1-6qz"/>
-                                    <constraint firstAttribute="width" constant="230" id="sYT-Yc-V2W"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="vmD-Jy-d2Z"/>
+                                    <constraint firstAttribute="height" constant="55" id="MN1-zX-liB"/>
+                                    <constraint firstAttribute="width" constant="230" id="hzF-SY-mRT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -73,14 +64,21 @@
                                     <action selector="onButtonPressed:" destination="d5X-0P-zHO" eventType="touchUpInside" id="BI6-lP-Nxu"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mdLogo" translatesAutoresizingMaskIntoConstraints="NO" id="GUC-eA-FyL">
+                                <rect key="frame" x="36" y="219" width="260" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="SIQ-gw-Xuk"/>
+                                    <constraint firstAttribute="width" constant="260" id="cg0-YF-A5c"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="GUC-eA-FyL" firstAttribute="centerY" secondItem="OZn-Q8-5F1" secondAttribute="centerY" constant="-7.5" id="4sR-FH-Raa"/>
-                            <constraint firstItem="9BT-Ke-l3V" firstAttribute="top" secondItem="OZn-Q8-5F1" secondAttribute="top" constant="20" id="5pO-Nl-che"/>
-                            <constraint firstItem="9BT-Ke-l3V" firstAttribute="centerX" secondItem="OZn-Q8-5F1" secondAttribute="centerX" id="Ody-Oj-XGe"/>
-                            <constraint firstItem="GUC-eA-FyL" firstAttribute="centerX" secondItem="OZn-Q8-5F1" secondAttribute="centerX" constant="7" id="izf-ez-K6W"/>
-                            <constraint firstItem="kp0-va-Njv" firstAttribute="centerX" secondItem="OZn-Q8-5F1" secondAttribute="centerX" id="u8t-9R-vKw"/>
-                            <constraint firstItem="OZn-Q8-5F1" firstAttribute="bottom" secondItem="kp0-va-Njv" secondAttribute="bottom" constant="6" id="xMg-Wz-iQc"/>
+                            <constraint firstItem="OZn-Q8-5F1" firstAttribute="bottom" secondItem="kp0-va-Njv" secondAttribute="bottom" constant="20" id="350-6F-y4X"/>
+                            <constraint firstItem="9BT-Ke-l3V" firstAttribute="centerX" secondItem="OZn-Q8-5F1" secondAttribute="centerX" id="UZI-DY-TpP"/>
+                            <constraint firstItem="9BT-Ke-l3V" firstAttribute="top" secondItem="OZn-Q8-5F1" secondAttribute="top" constant="20" id="XOm-3y-WNQ"/>
+                            <constraint firstItem="GUC-eA-FyL" firstAttribute="centerX" secondItem="OZn-Q8-5F1" secondAttribute="centerX" constant="6" id="doq-HG-bKW"/>
+                            <constraint firstItem="GUC-eA-FyL" firstAttribute="centerY" secondItem="OZn-Q8-5F1" secondAttribute="centerY" constant="-7.5" id="pta-4j-Boz"/>
+                            <constraint firstItem="kp0-va-Njv" firstAttribute="centerX" secondItem="OZn-Q8-5F1" secondAttribute="centerX" id="v7Q-Rb-PdR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OZn-Q8-5F1"/>
                     </view>
