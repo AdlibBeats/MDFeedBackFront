@@ -8,7 +8,7 @@
 
 import Alamofire
 
-extension MessageTextViewController: MDFeedBackDelegate {
+extension SendingViewController: MDFeedBackDelegate {
     func getMDFeedBacksLoaded(_ response: DataResponse<Any>?) -> Bool {
         return mdFeedBackManager.getMDFeedBacksLoaded(response)
     }
@@ -18,6 +18,8 @@ extension MessageTextViewController: MDFeedBackDelegate {
     }
 
     func postMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
+        updateBooleanProperties(false)
+        
         let result = mdFeedBackManager.postMDFeedBackLoaded(response)
         
         if result {
@@ -37,6 +39,14 @@ extension MessageTextViewController: MDFeedBackDelegate {
     func deleteMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         return mdFeedBackManager.deleteMDFeedBackLoaded(response)
     }
+    
+    func updateBooleanProperties(_ isActive: Bool) -> Void {
+        isActive ? progressRing.startAnimating() : progressRing.stopAnimating()
+        application.isNetworkActivityIndicatorVisible = isActive
+    }
+}
+
+extension UIViewController {
     
     func showContinue() -> Void {
         let uiAlertController = getNewUIAlertController("Сообщение успешно отправлено", .alert)
@@ -74,9 +84,7 @@ extension MessageTextViewController: MDFeedBackDelegate {
             message: nil, preferredStyle: alertControllerPreferredStryle)
         return uiAlertController
     }
-}
-
-extension UIViewController {
+    
     func getBackgroundImage(_ named: String) -> UIImageView? {
         if let uiImage = UIImage(named: named) {
             let uiImageView = UIImageView(image: uiImage)

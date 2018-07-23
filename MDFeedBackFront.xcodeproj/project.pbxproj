@@ -19,6 +19,7 @@
 		0E36A11320FE8571008321F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E36A11120FE8571008321F5 /* Main.storyboard */; };
 		0E36A11520FE8573008321F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E36A11420FE8573008321F5 /* Assets.xcassets */; };
 		0E36A11820FE8573008321F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E36A11620FE8573008321F5 /* LaunchScreen.storyboard */; };
+		0EC12A8E2105CACF000EAC5A /* MDSingleSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC12A8D2105CACF000EAC5A /* MDSingleSingleton.swift */; };
 		0ED493EE20FE89BF008600EF /* MDFeedBackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493ED20FE89BF008600EF /* MDFeedBackManager.swift */; };
 		0ED493F020FE89E9008600EF /* MDFeedBackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493EF20FE89E9008600EF /* MDFeedBackProtocol.swift */; };
 		0ED493F220FE8A0B008600EF /* MDFeedBackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED493F120FE8A0B008600EF /* MDFeedBackDelegate.swift */; };
@@ -42,6 +43,7 @@
 		0E36A11420FE8573008321F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E36A11720FE8573008321F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E36A11920FE8573008321F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EC12A8D2105CACF000EAC5A /* MDSingleSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDSingleSingleton.swift; sourceTree = "<group>"; };
 		0ED493ED20FE89BF008600EF /* MDFeedBackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDFeedBackManager.swift; sourceTree = "<group>"; };
 		0ED493EF20FE89E9008600EF /* MDFeedBackProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDFeedBackProtocol.swift; sourceTree = "<group>"; };
 		0ED493F120FE8A0B008600EF /* MDFeedBackDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDFeedBackDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				0E1DC18520FF951D0097821E /* MDFeedBackExtension.swift */,
+				0EC12A8D2105CACF000EAC5A /* MDSingleSingleton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				0ED493EE20FE89BF008600EF /* MDFeedBackManager.swift in Sources */,
 				0E1DC1972100B23B0097821E /* MessageNavigationViewController.swift in Sources */,
 				0E1DC18620FF951D0097821E /* MDFeedBackExtension.swift in Sources */,
+				0EC12A8E2105CACF000EAC5A /* MDSingleSingleton.swift in Sources */,
 				0E1DC19121007E9F0097821E /* Notes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

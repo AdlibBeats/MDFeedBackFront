@@ -10,43 +10,24 @@ import UIKit
 
 class SendingViewController: UIViewController {
 
+    @IBOutlet weak var progressRing: UIActivityIndicatorView!
+    
+    let application = UIApplication.shared
+    var mdFeedBackManager = MDFeedBackManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showAlert()
-    }
-    
-    func showAlert() {
-        let alertActionStyle = UIAlertActionStyle.default
-        let alertActionTitle = "Ok"
-        let alertControllerPreferredStryle = UIAlertControllerStyle.alert
-        let alertControllerTitle = "Сообщение успешно отправлено"
+        mdFeedBackManager = MDFeedBackManager(self)
         
-        //TODO: Check text
-//        if self.textField.text.isEmpty {
-//            alertActionStyle = .destructive
-//            alertActionTitle = "Cancel"
-//            alertControllerPreferredStryle = .actionSheet
-//            alertControllerTitle = "Поле сообщения должно быть заполнено"
-//        }
+        let mdFeedBackModel = MDFeedBackModel()
+        mdFeedBackModel.firstName = "default"
+        mdFeedBackModel.lastName = "default"
+        mdFeedBackModel.text = MDSingletonData.message
+        mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
         
-        let alertController = UIAlertController(
-            title: alertControllerTitle,
-            message: nil, preferredStyle: alertControllerPreferredStryle)
+        updateBooleanProperties(true)
         
-        let action = UIAlertAction(title: alertActionTitle, style: alertActionStyle) {
-            (action) in
-            
-            //TODO: Check text
-//            if !self.textField.text.isEmpty {
-//                self.navigationController?.popToRootViewController(
-//                    animated: true)
-//            }
-        }
-        alertController.addAction(action)
-        self.present(
-            alertController,
-            animated: true,
-            completion: nil)
+        navigationController?.isNavigationBarHidden = true
     }
 }

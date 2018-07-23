@@ -10,6 +10,8 @@ import UIKit
 
 class MessageNavigationViewController: UINavigationController {
 
+    var mdFeedBackModel = MDFeedBackModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

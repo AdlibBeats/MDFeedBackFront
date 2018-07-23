@@ -10,8 +10,6 @@ import UIKit
 
 class MessageTextViewController: UIViewController {
     
-    var mdFeedBackManager = MDFeedBackManager()
-    
     @IBOutlet weak var textView: UITextView!
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -24,8 +22,6 @@ class MessageTextViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        mdFeedBackManager = MDFeedBackManager(self)
         
         textView.becomeFirstResponder()
         
@@ -56,12 +52,9 @@ class MessageTextViewController: UIViewController {
             return
         }
         
-        let mdFeedBackModel = MDFeedBackModel()
-        mdFeedBackModel.firstName = "default"
-        mdFeedBackModel.lastName = "default"
-        mdFeedBackModel.text = self.textView.text
-        mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
-        //showAlert()
+        MDSingletonData.message = textView.text
+        
+        goToSendingViewController()
     }
     
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -69,13 +62,10 @@ class MessageTextViewController: UIViewController {
 //        self.view.endEditing(true)
 //    }
     
-    
-    
-    //MARK: Navigation to
-//    func goToSendingViewController() -> Void {
-//        if let sendingViewController = self.storyboard?.instantiateViewController(
-//            withIdentifier: "SendingViewController") as? SendingViewController {
-//            self.navigationController?.pushViewController(sendingViewController, animated: true)
-//        }
-//    }
+    func goToSendingViewController() -> Void {
+        if let sendingViewController = self.storyboard?.instantiateViewController(
+            withIdentifier: "SendingViewController") as? SendingViewController {
+            self.navigationController?.pushViewController(sendingViewController, animated: true)
+        }
+    }
 }
