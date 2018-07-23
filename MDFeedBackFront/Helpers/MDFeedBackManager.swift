@@ -34,104 +34,34 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         self.delegate = delegate
     }
     
-    private func getDataRequest(
-        _ httpMethod: HTTPMethod,
-        _ parameters: Parameters? = nil,
-        _ apiUrl: String = "api/MDFeedBacks/") -> DataRequest? {
-        
-        let parameter = (parameters?["MDFeedBackModelId"] as? Int) ?? 0
-        var stringParameter = "\(parameter)"
-        if parameter == 0 {
-            stringParameter = ""
+    private var _mdFeedBacks = [MDFeedBackModel]()
+    open var mdFeedBacks: [MDFeedBackModel] {
+        get {
+            return _mdFeedBacks
         }
-    
-        let url = "\(baseUrl)\(apiUrl)\(stringParameter)"
-        isLoaded = false
-        switch httpMethod {
-        case .get:
-            return Alamofire.request(
-                url,
-                method: httpMethod,
-                parameters: nil,
-                encoding: JSONEncoding.default,
-                headers: nil).responseJSON {
-                    response in
-                    
-                    if parameter == 0 {
-                        self.delegate?.getMDFeedBacksLoaded(response)
-                    }
-                    else {
-                        self.delegate?.getMDFeedBackLoaded(response)
-                    }
-                    self.isLoaded = true
-            }
-        case .post:
-            return Alamofire.request(
-                url,
-                method: httpMethod,
-                parameters: parameters,
-                encoding: JSONEncoding.default,
-                headers: nil).responseJSON {
-                    response in
-                    
-                    self.delegate?.postMDFeedBackLoaded(response)
-                    self.isLoaded = true
-            }
-        case .put:
-            return Alamofire.request(
-                url,
-                method: httpMethod,
-                parameters: parameters,
-                encoding: JSONEncoding.default,
-                headers: nil).responseJSON {
-                    response in
-                    
-                    self.delegate?.editMDFeedBackLoaded(response)
-                    self.isLoaded = true
-            }
-        case .delete:
-            return Alamofire.request(
-                url,
-                method: httpMethod,
-                parameters: nil,
-                encoding: JSONEncoding.default,
-                headers: nil).responseJSON {
-                    response in
-                    
-                    self.delegate?.deleteMDFeedBackLoaded(response)
-                    self.isLoaded = true
-            }
-        default:
-            return nil
+        set (value) {
+            _mdFeedBacks = value
         }
     }
     
-    private func getParameters(_ mdFeedBackModel: MDFeedBackModel) -> Parameters {
-        return ["MDFeedBackModelId": mdFeedBackModel.mdFeedBackModelId,
-                "FirstName": mdFeedBackModel.firstName,
-                "LastName": mdFeedBackModel.lastName,
-                "Text": mdFeedBackModel.text]
+    private var _mdFeedBack = MDFeedBackModel()
+    open var mdFeedBack: MDFeedBackModel {
+        get {
+            return _mdFeedBack
+        }
+        set (value) {
+            _mdFeedBack = value
+        }
     }
     
-    private func getNewMDFeedBackModelFromDictionary(_ dictionary: [String: JSON]) -> MDFeedBackModel {
-        let mdFeedBackModel = MDFeedBackModel()
-        
-        if let mdFeedBackModelId = dictionary["MDFeedBackModelId"]?.int {
-            mdFeedBackModel.mdFeedBackModelId = mdFeedBackModelId
+    private var _isLoaded = false
+    open var isLoaded: Bool {
+        get {
+            return _isLoaded
         }
-        
-        if let firstName = dictionary["FirstName"]?.string {
-            mdFeedBackModel.firstName = firstName
+        set (value) {
+            _isLoaded = value
         }
-        
-        if let lastName = dictionary["LastName"]?.string {
-            mdFeedBackModel.lastName = lastName
-        }
-        
-        if let text = dictionary["Text"]?.string {
-            mdFeedBackModel.text = text
-        }
-        return mdFeedBackModel
     }
     
     private func log(_ response: DataResponse<Any>?) -> Bool {
@@ -181,34 +111,104 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         }
     }
     
-    private var _mdFeedBacks = [MDFeedBackModel]()
-    open var mdFeedBacks: [MDFeedBackModel] {
-        get {
-            return _mdFeedBacks
+    private func getDataRequest(
+        _ httpMethod: HTTPMethod,
+        _ parameters: Parameters? = nil,
+        _ apiUrl: String = "api/MDFeedBacks/") -> DataRequest? {
+        
+        let parameter = (parameters?["MDFeedBackModelId"] as? Int) ?? 0
+        var stringParameter = "\(parameter)"
+        if parameter == 0 {
+            stringParameter = ""
         }
-        set (value) {
-            _mdFeedBacks = value
+    
+        let url = "\(baseUrl)\(apiUrl)\(stringParameter)"
+        isLoaded = false
+        switch httpMethod {
+        case .get:
+            return Alamofire.request(
+                url,
+                method: httpMethod,
+                parameters: nil,
+                encoding: JSONEncoding.default,
+                headers: nil).responseJSON {
+                    response in
+                    
+                    if parameter == 0 {
+                        _ = self.delegate?.getMDFeedBacksLoaded(response)
+                    }
+                    else {
+                        _ = self.delegate?.getMDFeedBackLoaded(response)
+                    }
+                    self.isLoaded = true
+            }
+        case .post:
+            return Alamofire.request(
+                url,
+                method: httpMethod,
+                parameters: parameters,
+                encoding: JSONEncoding.default,
+                headers: nil).responseJSON {
+                    response in
+                    
+                    _ = self.delegate?.postMDFeedBackLoaded(response)
+                    self.isLoaded = true
+            }
+        case .put:
+            return Alamofire.request(
+                url,
+                method: httpMethod,
+                parameters: parameters,
+                encoding: JSONEncoding.default,
+                headers: nil).responseJSON {
+                    response in
+                    
+                    _ = self.delegate?.editMDFeedBackLoaded(response)
+                    self.isLoaded = true
+            }
+        case .delete:
+            return Alamofire.request(
+                url,
+                method: httpMethod,
+                parameters: nil,
+                encoding: JSONEncoding.default,
+                headers: nil).responseJSON {
+                    response in
+                    
+                    _ = self.delegate?.deleteMDFeedBackLoaded(response)
+                    self.isLoaded = true
+            }
+        default:
+            return nil
         }
     }
     
-    private var _mdFeedBack = MDFeedBackModel()
-    open var mdFeedBack: MDFeedBackModel {
-        get {
-            return _mdFeedBack
-        }
-        set (value) {
-            _mdFeedBack = value
-        }
+    private func getParameters(_ mdFeedBackModel: MDFeedBackModel) -> Parameters {
+        return ["MDFeedBackModelId": mdFeedBackModel.mdFeedBackModelId,
+                "FirstName": mdFeedBackModel.firstName,
+                "LastName": mdFeedBackModel.lastName,
+                "Text": mdFeedBackModel.text]
     }
     
-    private var _isLoaded = false
-    open var isLoaded: Bool {
-        get {
-            return _isLoaded
+    private func getNewMDFeedBackModelFromDictionary(_ dictionary: [String: JSON]) -> MDFeedBackModel {
+        let mdFeedBackModel = MDFeedBackModel()
+        
+        if let mdFeedBackModelId = dictionary["MDFeedBackModelId"]?.int {
+            mdFeedBackModel.mdFeedBackModelId = mdFeedBackModelId
         }
-        set (value) {
-            _isLoaded = value
+        
+        if let firstName = dictionary["FirstName"]?.string {
+            mdFeedBackModel.firstName = firstName
         }
+        
+        if let lastName = dictionary["LastName"]?.string {
+            mdFeedBackModel.lastName = lastName
+        }
+        
+        if let text = dictionary["Text"]?.string {
+            mdFeedBackModel.text = text
+        }
+        return mdFeedBackModel
     }
     
     open func getMDFeedBacksLoaded(_ response: DataResponse<Any>?) -> Bool {
@@ -222,9 +222,8 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
                 
                 if let array = jsonData.array {
                     mdFeedBacks = [MDFeedBackModel]()
-                    let numberOfFeedBacks = array.count
-                    for i in 0 ..< numberOfFeedBacks {
-                        if let dictionary = array[i].dictionary {
+                    for item in array {
+                        if let dictionary = item.dictionary {
                             let mdFeedBackModel = getNewMDFeedBackModelFromDictionary(dictionary)
                             mdFeedBacks.append(mdFeedBackModel)
                             
