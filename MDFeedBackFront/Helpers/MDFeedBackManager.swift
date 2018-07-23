@@ -147,42 +147,36 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
                         
                         if let dictionary = jsonData.dictionary {
                             if let message = dictionary["Message"] {
-                                print(message)
-                                
-                                switch (message) {
-                                case "The requested resource does not support http method 'POST'.":
-                                    return false
-                                default:
-                                    return true
-                                }
+                                print("MD Error: \(message)")
+                                return false
                             }
                             else {
-                                print("Не удалось найти значение по ключу 'Message'")
+                                print("MD Error: Не удалось найти значение по ключу 'Message'")
                                 return false
                             }
                         }
                         else {
-                            print("Словарь json пустой")
+                            print("MD Error: Словарь json пустой")
                             return false
                         }
                     }
                     catch {
-                        print("Не удалось сконвертировать полученные данные в формат json")
+                        print("MD Error: Не удалось сконвертировать полученные данные в формат json")
                         return false
                     }
                 }
                 else {
-                    print("Не удалось получить данные с хостинга")
+                    print("MD Error: Не удалось получить данные с хостинга")
                     return false
                 }
             }
             else {
-                print("Запрос успешно выполнен")
+                print("MD Success: Запрос успешно выполнен")
                 return true
             }
         }
         else {
-            print("Не удалось получить данные с хостинга")
+            print("MD Error: Не удалось получить данные с хостинга")
             return false
         }
     }
@@ -240,17 +234,17 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
                     return true
                 }
                 else {
-                    print("Массив json пустой")
+                    print("MD Error: Массив json пустой")
                     return false
                 }
             }
             catch {
-                print("Не удалось сконвертировать полученные данные в формат json")
+                print("MD Error: Не удалось сконвертировать полученные данные в формат json")
                 return false
             }
         }
         else {
-            print("Не удалось получить данные с хостинга")
+            print("MD Error: Не удалось получить данные с хостинга")
             return false
         }
     }
@@ -272,17 +266,17 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
                     return true
                 }
                 else {
-                    print("Словарь json пустой")
+                    print("MD Error: Словарь json пустой")
                     return false
                 }
             }
             catch {
-                print("Не удалось сконвертировать полученные данные в формат json")
+                print("MD Error: Не удалось сконвертировать полученные данные в формат json")
                 return false
             }
         }
         else {
-            print("Не удалось получить данные с хостинга")
+            print("MD Error: Не удалось получить данные с хостинга")
             return false
         }
     }
