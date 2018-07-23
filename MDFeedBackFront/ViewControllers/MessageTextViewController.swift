@@ -23,7 +23,7 @@ class MessageTextViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = false
         textView.becomeFirstResponder()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateUITextView), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
