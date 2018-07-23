@@ -23,19 +23,19 @@ extension SendingViewController: MDFeedBackDelegate {
         let result = mdFeedBackManager.postMDFeedBackLoaded(response)
         
         if result {
-            showContinue()
+            showContinue(self, goToRoot)
         }
         else {
-            showError("Сообщение не удалось отправить")
+            showError("Сообщение не удалось отправить", self, goBack)
         }
         
         return result
     }
-
+    
     func editMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         return mdFeedBackManager.editMDFeedBackLoaded(response)
     }
-
+    
     func deleteMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         return mdFeedBackManager.deleteMDFeedBackLoaded(response)
     }
@@ -48,12 +48,12 @@ extension SendingViewController: MDFeedBackDelegate {
 
 extension UIViewController {
     
-    func showContinue() -> Void {
+    func showContinue(_ viewController: UIViewController, _ continueAction: ((_ viewController: UIViewController) -> Void)?) -> Void {
         let uiAlertController = getNewUIAlertController("Сообщение успешно отправлено", .alert)
         let action = UIAlertAction(title: "Ok", style: .default) {
             (action) in
             
-            self.navigationController?.popToRootViewController(animated: true)
+            continueAction?(viewController)
         }
         uiAlertController.addAction(action)
         self.present(
@@ -62,18 +62,26 @@ extension UIViewController {
             completion: nil)
     }
     
-    func showError(_ errorMessage: String) -> Void {
+    func showError(_ errorMessage: String, _ viewController: UIViewController, _ errorAction: ((_ viewController: UIViewController) -> Void)? = nil) -> Void {
         let uiAlertController = getNewUIAlertController(errorMessage, .actionSheet)
-        let action = UIAlertAction(title: "Cancel", style: .destructive) {
+        let action = UIAlertAction(title: "Ok", style: .destructive) {
             (action) in
             
-            //TODO:
+            errorAction?(viewController)
         }
         uiAlertController.addAction(action)
         self.present(
             uiAlertController,
             animated: true,
             completion: nil)
+    }
+    
+    func goBack(_ viewController: UIViewController) -> Void {
+        viewController.navigationController?.popViewController(animated: true)
+    }
+    
+    func goToRoot(_ viewController: UIViewController) -> Void {
+       viewController.navigationController?.popToRootViewController(animated: true)
     }
     
     func getNewUIAlertController(

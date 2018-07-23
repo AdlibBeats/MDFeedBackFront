@@ -18,13 +18,13 @@ class MessageTextViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.view.isHidden = false
+        
+        navigationController?.isNavigationBarHidden = false
+        textView.becomeFirstResponder()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.isNavigationBarHidden = false
-        textView.becomeFirstResponder()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateUITextView), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
@@ -49,7 +49,7 @@ class MessageTextViewController: UIViewController {
     
     @IBAction func onSendItemTouched(_ sender: UIBarButtonItem) {
         if textView.text.isEmpty {
-            showError("Поле сообщения должно быть заполнено")
+            showError("Поле сообщения должно быть заполнено", self)
             return
         }
         
