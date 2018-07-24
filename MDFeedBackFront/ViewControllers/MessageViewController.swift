@@ -40,13 +40,11 @@ class MessageViewController: UIViewController {
     @IBOutlet weak var goToInputTextButtun: UIButton!
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.view.isHidden = true
-        self.navigationController?.navigationBar.isHidden = false
+        updateBooleanProperties(false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.view.isHidden = false
-        self.navigationController?.navigationBar.isHidden = true
+        updateBooleanProperties(true)
     }
     
     override func viewDidLoad() {
@@ -99,5 +97,10 @@ class MessageViewController: UIViewController {
             withIdentifier: "MessageTextViewController") as? MessageTextViewController {
             self.navigationController?.pushViewController(messageTextViewController, animated: true)
         }
+    }
+    
+    func updateBooleanProperties(_ isActive: Bool) -> Void {
+        self.view.isHidden = !isActive
+        navigationController?.isNavigationBarHidden = isActive
     }
 }

@@ -36,14 +36,6 @@ extension SendingViewController: MDFeedBackDelegate {
     func deleteMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         return mdFeedBackManager.deleteMDFeedBackLoaded(response)
     }
-    
-    func updateBooleanProperties(_ isActive: Bool) -> Void {
-        isActive ?
-            progressRing.startAnimating() :
-            progressRing.stopAnimating()
-        
-        application.isNetworkActivityIndicatorVisible = isActive
-    }
 }
 
 extension UIViewController {

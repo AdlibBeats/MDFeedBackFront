@@ -15,6 +15,15 @@ class SendingViewController: UIViewController {
     let application = UIApplication.shared
     var mdFeedBackManager = MDFeedBackManager()
     
+    override func viewWillDisappear(_ animated: Bool) {
+        updateBooleanProperties(false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+        updateBooleanProperties(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,9 +34,13 @@ class SendingViewController: UIViewController {
         mdFeedBackModel.lastName = "default"
         mdFeedBackModel.text = MDSingletonData.message
         mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
+    }
+    
+    func updateBooleanProperties(_ isActive: Bool) -> Void {
+        application.isNetworkActivityIndicatorVisible = isActive
         
-        updateBooleanProperties(true)
-        
-        navigationController?.isNavigationBarHidden = true
+        isActive ?
+            progressRing.startAnimating() :
+            progressRing.stopAnimating()
     }
 }
