@@ -69,14 +69,14 @@ class MessageViewController: UIViewController {
 //            self.view.frame.origin.y = 0.0
 //        }
         
-        rotated()
+        //rotated()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
-    @objc func rotated() -> Void {
+    //@objc func rotated() -> Void {
         //rotation
-    }
+    //}
     
 //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 //

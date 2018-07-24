@@ -6,8 +6,6 @@
 //  Copyright © 2018 Андрей Васильев. All rights reserved.
 //
 
-import Foundation
-
-class MDSingletonData {
-    static var message = ""
+open class MDSingletonData {
+    open static var message = ""
 }

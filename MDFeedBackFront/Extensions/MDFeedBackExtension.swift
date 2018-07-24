@@ -22,12 +22,9 @@ extension SendingViewController: MDFeedBackDelegate {
         
         let result = mdFeedBackManager.postMDFeedBackLoaded(response)
         
-        if result {
-            showContinue(self, goToRoot)
-        }
-        else {
+        result ?
+            showContinue(self, goToRoot) :
             showError("Сообщение не удалось отправить", self, goBack)
-        }
         
         return result
     }
@@ -41,7 +38,10 @@ extension SendingViewController: MDFeedBackDelegate {
     }
     
     func updateBooleanProperties(_ isActive: Bool) -> Void {
-        isActive ? progressRing.startAnimating() : progressRing.stopAnimating()
+        isActive ?
+            progressRing.startAnimating() :
+            progressRing.stopAnimating()
+        
         application.isNetworkActivityIndicatorVisible = isActive
     }
 }
@@ -94,17 +94,16 @@ extension UIViewController {
     }
     
     func getBackgroundImage(_ named: String) -> UIImageView? {
-        if let uiImage = UIImage(named: named) {
-            let uiImageView = UIImageView(image: uiImage)
-            uiImageView.contentMode = .scaleAspectFill
-            uiImageView.alpha = 0.8
-            uiImageView.translatesAutoresizingMaskIntoConstraints = false
-            
-            return uiImageView
-        }
-        else {
+        guard let uiImage = UIImage(named: named) else {
+            print("MD Error: не удалось найти изображение \(named)")
             return nil
         }
+        
+        let uiImageView = UIImageView(image: uiImage)
+        uiImageView.contentMode = .scaleAspectFill
+        uiImageView.alpha = 0.8
+        uiImageView.translatesAutoresizingMaskIntoConstraints = false
+        return uiImageView
     }
     
     func setSquareConstraint(_ childView: UIView, _ rootView: UIView) -> Void {
@@ -138,6 +137,22 @@ extension UIViewController {
             relatedBy: .equal,
             toItem: rootView,
             attribute: .bottom,
+            multiplier: 1,
+            constant: 0).isActive = true
+        NSLayoutConstraint(
+            item: childView,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: rootView,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0).isActive = true
+        NSLayoutConstraint(
+            item: childView,
+            attribute: .centerY,
+            relatedBy: .equal,
+            toItem: rootView,
+            attribute: .centerY,
             multiplier: 1,
             constant: 0).isActive = true
     }

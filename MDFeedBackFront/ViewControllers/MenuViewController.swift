@@ -28,17 +28,16 @@ class MenuViewController: UITabBarController, UITabBarControllerDelegate {
             self.setSquareConstraint(backgroundImage, self.view)
         }
     }
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        switch tabBar.selectedItem?.title {
-        case "Home":
-            backgroundImage.image = UIImage(named: "backgroundImage4")
-            break
-        case "Info":
-            backgroundImage.image = UIImage(named: "backgroundImage4")
-            break
-        default:
-            break
-        }
-    }
+//    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+//        switch tabBar.selectedItem?.title {
+//        case "Home":
+//            backgroundImage.image = UIImage(named: "backgroundImage4")
+//            break
+//        case "Info":
+//            backgroundImage.image = UIImage(named: "backgroundImage4")
+//            break
+//        default:
+//            break
+//        }
+//    }
 }

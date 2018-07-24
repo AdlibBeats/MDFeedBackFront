@@ -38,23 +38,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func getNewViewController(
-        _ typeController: TypeController,
-        _ navigationItemTitle: String,
-        _ tabBarItemTitle: String,
-        _ image: UIImage?,
-        _ selectedImage: UIImage?,
-        _ backgroundColor: UIColor = UIColor.orange) -> UIViewController {
-        
-        let viewController = typeController == .message ?
-            MessageViewController() : InfoViewController()
-        
-        viewController.navigationItem.title = navigationItemTitle
-        viewController.tabBarItem = UITabBarItem(title: tabBarItemTitle, image: image, selectedImage: selectedImage)
-        viewController.view.backgroundColor = backgroundColor
-        
-        return viewController
-    }
+//    func getNewViewController(
+//        _ typeController: TypeController,
+//        _ navigationItemTitle: String,
+//        _ tabBarItemTitle: String,
+//        _ image: UIImage?,
+//        _ selectedImage: UIImage?,
+//        _ backgroundColor: UIColor = UIColor.orange) -> UIViewController {
+//        
+//        let viewController = typeController == .message ?
+//            MessageViewController() : InfoViewController()
+//        
+//        viewController.navigationItem.title = navigationItemTitle
+//        viewController.tabBarItem = UITabBarItem(title: tabBarItemTitle, image: image, selectedImage: selectedImage)
+//        viewController.view.backgroundColor = backgroundColor
+//        
+//        return viewController
+//    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

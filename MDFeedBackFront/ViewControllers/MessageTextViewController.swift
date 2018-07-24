@@ -32,17 +32,15 @@ class MessageTextViewController: UIViewController {
     }
     
     @objc func updateUITextView(sender: Notification) -> Void {
-        if let userInfo = sender.userInfo {
-            if let nsValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-                let keyboardFrame = self.view.convert(nsValue.cgRectValue, to: self.view.window)
-                if sender.name == Notification.Name.UIKeyboardWillHide {
-                    textView.contentInset = UIEdgeInsets.zero
-                }
-                else {
-                    textView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.height, 0)
-                    textView.scrollIndicatorInsets = textView.contentInset
-                }
-            }
+        guard let userInfo = sender.userInfo else { return }
+        guard let nsValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardFrame = self.view.convert(nsValue.cgRectValue, to: self.view.window)
+        if sender.name == Notification.Name.UIKeyboardWillHide {
+            textView.contentInset = UIEdgeInsets.zero
+        }
+        else {
+            textView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.height, 0)
+            textView.scrollIndicatorInsets = textView.contentInset
         }
         textView.scrollRangeToVisible(textView.selectedRange)
     }
