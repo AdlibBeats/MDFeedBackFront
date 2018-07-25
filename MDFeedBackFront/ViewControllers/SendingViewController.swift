@@ -32,11 +32,11 @@ class SendingViewController: UIViewController {
         mdFeedBackManager = MDFeedBackManager(self)
         
         let mdFeedBackModel = MDFeedBackModel()
-        mdFeedBackModel.mdFeedBackModelId = 104
-        mdFeedBackModel.firstName = "Andrey"
-        mdFeedBackModel.lastName = "Vasilyev"
+        //mdFeedBackModel.mdFeedBackModelId = ... on editMDFeedBack
+        mdFeedBackModel.firstName = "default"
+        mdFeedBackModel.lastName = "default"
         mdFeedBackModel.text = MDSingletonData.message
-        mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
+        _ = mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
     }
     
     func updateBooleanProperties(_ isActive: Bool) -> Void {

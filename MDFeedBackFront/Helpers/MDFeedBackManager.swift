@@ -238,56 +238,56 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         return false
     }
     
-    open func getMDFeedBacks() -> Void {
-        _ = getDataRequest(
+    open func getMDFeedBacks() -> DataRequest? {
+        return getDataRequest(
             .get,
             nil,
             nil,
             self.delegate?.getMDFeedBacksLoaded)
     }
     
-    open func getMDFeedBack(_ mdFeedBackModelId: Int) -> Void {
-        _ = getDataRequest(
+    open func getMDFeedBack(_ mdFeedBackModelId: Int) -> DataRequest? {
+        return getDataRequest(
             .get,
             "\(mdFeedBackModelId)",
             nil,
             self.delegate?.getMDFeedBackLoaded)
     }
     
-    open func getLastMDFeedBack() -> Void {
-        _ = getDataRequest(
+    open func getLastMDFeedBack() -> DataRequest? {
+        return getDataRequest(
             .get,
             "Last",
             nil,
             self.delegate?.getMDFeedBackLoaded)
     }
     
-    open func getFirstMDFeedBack() -> Void {
-        _ = getDataRequest(
+    open func getFirstMDFeedBack() -> DataRequest? {
+        return getDataRequest(
             .get,
             "First",
             nil,
             self.delegate?.getMDFeedBackLoaded)
     }
     
-    open func postMDFeedBack(_ mdFeedBackModel: MDFeedBackModel) -> Void {
-        _ = getDataRequest(
+    open func postMDFeedBack(_ mdFeedBackModel: MDFeedBackModel) -> DataRequest? {
+        return getDataRequest(
             .post,
             nil,
             getParameters(mdFeedBackModel),
             self.delegate?.postMDFeedBackLoaded)
     }
     
-    open func editMDFeedBack(_ mdFeedBackModel: MDFeedBackModel) -> Void {
-        _ = getDataRequest(
+    open func editMDFeedBack(_ mdFeedBackModel: MDFeedBackModel) -> DataRequest? {
+        return getDataRequest(
             .put,
             "\(mdFeedBackModel.mdFeedBackModelId)",
             getParameters(mdFeedBackModel),
             self.delegate?.editMDFeedBackLoaded)
     }
     
-    open func deleteMDFeedBack(_ mdFeedBackModelId: Int) -> Void {
-        _ = getDataRequest(
+    open func deleteMDFeedBack(_ mdFeedBackModelId: Int) -> DataRequest? {
+        return getDataRequest(
             .delete,
             "\(mdFeedBackModelId)",
             nil,
