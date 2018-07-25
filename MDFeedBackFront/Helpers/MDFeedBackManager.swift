@@ -17,6 +17,15 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     open var mdFeedBacks = [MDFeedBackModel]()
     open var mdFeedBack = MDFeedBackModel()
     open var isLoaded = true
+    open var errorsDictionary =
+        [
+            1: "MD Error: Не удалось получить данные с хостинга.",
+            2: "MD Error: Не удалось сконвертировать полученные данные в формат json.",
+            3: "MD Error: Словарь json пустой.",
+            4: "MD Error: Массив json пустой.",
+            5: "MD Error: Не удалось найти значение по ключу 'Message'.",
+            6: "MD Success: Запрос успешно выполнен."
+        ]
     
     init() {
         self.baseUrl = "http://proarttherapy.ru/"
@@ -40,21 +49,21 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     
     private func printError(responseData: Data?) -> Void {
         guard let responseData = responseData else {
-            print("MD Error: Не удалось получить данные с хостинга")
+            print(errorsDictionary[1]!)
             return
         }
         guard let jsonData = getJsonData(
             responseData,
             JSONSerialization.ReadingOptions.mutableLeaves) else {
-                print("MD Error: Не удалось сконвертировать полученные данные в формат json")
+                print(errorsDictionary[2]!)
                 return
         }
         guard let jsonDictionary = jsonData.dictionary else {
-            print("MD Error: Словарь json пустой")
+            print(errorsDictionary[3]!)
             return
         }
         guard let errorMessage = jsonDictionary["Message"] else {
-            print("MD Error: Не удалось найти значение по ключу 'Message'")
+            print(errorsDictionary[5]!)
             return
         }
         print("MD Error: \(errorMessage)")
@@ -124,7 +133,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     
     open func getMDFeedBacksLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print("MD Error: Не удалось получить данные с хостинга")
+            print(errorsDictionary[1]!)
             return false
         }
         if httpResponse.statusCode != 200 {
@@ -132,17 +141,17 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             return false
         }
         guard let responseData = response?.data else {
-            print("MD Error: Не удалось получить данные с хостинга")
+            print(errorsDictionary[1]!)
             return false
         }
         guard let jsonData = getJsonData(
             responseData,
             JSONSerialization.ReadingOptions.mutableContainers) else {
-                print("MD Error: Не удалось сконвертировать полученные данные в формат json")
+                print(errorsDictionary[2]!)
                 return false
         }
         guard let jsonArray = jsonData.array else {
-            print("MD Error: Массив json пустой")
+            print(errorsDictionary[4]!)
             return false
         }
         
@@ -158,13 +167,13 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             print("id: \(mdFeedBackModel.mdFeedBackModelId) name: \(mdFeedBackModel.firstName) \(mdFeedBackModel.lastName)\n text: \(mdFeedBackModel.text)")
         }
         
-        print("MD Success: Запрос успешно выполнен")
+        print(errorsDictionary[6]!)
         return true
     }
     
     open func getMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print("MD Error: Не удалось получить данные с хостинга")
+            print(errorsDictionary[1]!)
             return false
         }
         if httpResponse.statusCode != 200 {
@@ -172,35 +181,35 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             return false
         }
         guard let responseData = response?.data else {
-            print("MD Error: Не удалось получить данные с хостинга")
+            print(errorsDictionary[1]!)
             return false
         }
         guard let jsonData = getJsonData(
             responseData,
             JSONSerialization.ReadingOptions.mutableLeaves) else {
-                print("MD Error: Не удалось сконвертировать полученные данные в формат json")
+                print(errorsDictionary[2]!)
                 return false
         }
         guard let jsonDictionary = jsonData.dictionary else {
-            print("MD Error: Словарь json пустой")
+            print(errorsDictionary[3]!)
             return false
         }
         mdFeedBack = getModel(jsonDictionary)
         
         print("id: \(mdFeedBack.mdFeedBackModelId) name: \(mdFeedBack.firstName) \(mdFeedBack.lastName)\n text: \(mdFeedBack.text)")
         
-        print("MD Success: Запрос успешно выполнен")
+        print(errorsDictionary[6]!)
         return true
     }
     
     open func postMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print("MD Error: Не удалось получить данные с хостинга")
+            print(errorsDictionary[1]!)
             return false
         }
         
         if httpResponse.statusCode == 200 {
-            print("MD Success: Запрос успешно выполнен")
+            print(errorsDictionary[6]!)
             return true
         }
         
@@ -210,12 +219,12 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     
     open func editMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print("MD Error: Не удалось получить данные с хостинга")
+            print(errorsDictionary[1]!)
             return false
         }
         
         if httpResponse.statusCode == 200 {
-            print("MD Success: Запрос успешно выполнен")
+            print(errorsDictionary[6]!)
             return true
         }
         
@@ -225,12 +234,12 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     
     open func deleteMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print("MD Error: Не удалось получить данные с хостинга")
+            print(errorsDictionary[1]!)
             return false
         }
         
         if httpResponse.statusCode == 200 {
-            print("MD Success: Запрос успешно выполнен")
+            print(errorsDictionary[6]!)
             return true
         }
         
