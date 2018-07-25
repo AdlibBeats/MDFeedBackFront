@@ -32,8 +32,9 @@ class SendingViewController: UIViewController {
         mdFeedBackManager = MDFeedBackManager(self)
         
         let mdFeedBackModel = MDFeedBackModel()
-        mdFeedBackModel.firstName = "default"
-        mdFeedBackModel.lastName = "default"
+        mdFeedBackModel.mdFeedBackModelId = 104
+        mdFeedBackModel.firstName = "Andrey"
+        mdFeedBackModel.lastName = "Vasilyev"
         mdFeedBackModel.text = MDSingletonData.message
         mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
     }

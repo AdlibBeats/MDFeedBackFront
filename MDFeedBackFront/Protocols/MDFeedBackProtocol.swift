@@ -9,6 +9,8 @@
 protocol MDFeedBackProtocol {
     func getMDFeedBacks() -> Void
     func getMDFeedBack(_ idMDFeedBackModel: Int) -> Void
+    func getLastMDFeedBack() -> Void
+    func getFirstMDFeedBack() -> Void
     func postMDFeedBack(_ mdFeedBackModel: MDFeedBackModel) -> Void
     func editMDFeedBack(_ mdFeedBackModel: MDFeedBackModel) -> Void
     func deleteMDFeedBack(_ idMDFeedBackModel: Int) -> Void

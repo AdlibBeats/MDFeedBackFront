@@ -13,6 +13,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     
     var delegate: MDFeedBackDelegate?
     open let baseUrl: String
+    open let apiUrl: String = "api/MDFeedBacks/"
     open var mdFeedBacks = [MDFeedBackModel]()
     open var mdFeedBack = MDFeedBackModel()
     open var isLoaded = true
@@ -37,108 +38,48 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         self.delegate = delegate
     }
     
-    private func log(_ response: DataResponse<Any>?) -> Bool {
-        guard let httpResponse = response?.response else {
+    private func printError(responseData: Data?) -> Void {
+        guard let responseData = responseData else {
             print("MD Error: Не удалось получить данные с хостинга")
-            return false
-        }
-        if httpResponse.statusCode == 200 {
-            print("MD Success: Запрос успешно выполнен")
-            return true
-        }
-        guard let responseData = response?.data else {
-            print("MD Error: Не удалось получить данные с хостинга")
-            return false
+            return
         }
         guard let jsonData = getJsonData(
             responseData,
             JSONSerialization.ReadingOptions.mutableLeaves) else {
                 print("MD Error: Не удалось сконвертировать полученные данные в формат json")
-                return false
+                return
         }
         guard let jsonDictionary = jsonData.dictionary else {
             print("MD Error: Словарь json пустой")
-            return false
+            return
         }
         guard let errorMessage = jsonDictionary["Message"] else {
             print("MD Error: Не удалось найти значение по ключу 'Message'")
-            return false
+            return
         }
         print("MD Error: \(errorMessage)")
-        return false
     }
     
     private func getDataRequest(
         _ httpMethod: HTTPMethod,
+        _ field: String? = nil,
         _ parameters: Parameters? = nil,
-        _ apiUrl: String = "api/MDFeedBacks/") -> DataRequest? {
+        _ action: ((_ response: DataResponse<Any>?) -> Bool)? = nil) -> DataRequest? {
         
-        let parameter = (parameters?["MDFeedBackModelId"] as? Int) ?? 0
-        let stringParameter = parameter < 1 ? "" : "\(parameter)"
-        let url = "\(baseUrl)\(apiUrl)\(stringParameter)"
+        let url = "\(baseUrl)\(apiUrl)\(field ?? "")"
         isLoaded = false
-        switch httpMethod {
-        case .get:
-            return Alamofire.request(
-                url,
-                method: httpMethod,
-                parameters: nil,
-                encoding: JSONEncoding.default,
-                headers: nil).responseJSON {
-                    response in
+        
+        return Alamofire.request(
+            url,
+            method: httpMethod,
+            parameters: parameters,
+            encoding: JSONEncoding.default,
+            headers: nil).responseJSON {
+                response in
 
-                    _ = parameter == 0 ?
-                        self.delegate?.getMDFeedBacksLoaded(response) :
-                        self.delegate?.getMDFeedBackLoaded(response)
-
-                    self.isLoaded = true
-            }
-        case .post:
-            return Alamofire.request(
-                url,
-                method: httpMethod,
-                parameters: parameters,
-                encoding: JSONEncoding.default,
-                headers: nil).responseJSON {
-                    response in
-
-                    _ = self.delegate?.postMDFeedBackLoaded(response)
-                    self.isLoaded = true
-            }
-        case .put:
-            return Alamofire.request(
-                url,
-                method: httpMethod,
-                parameters: parameters,
-                encoding: JSONEncoding.default,
-                headers: nil).responseJSON {
-                    response in
-
-                    _ = self.delegate?.editMDFeedBackLoaded(response)
-                    self.isLoaded = true
-            }
-        case .delete:
-            return Alamofire.request(
-                url,
-                method: httpMethod,
-                parameters: nil,
-                encoding: JSONEncoding.default,
-                headers: nil).responseJSON {
-                    response in
-
-                    _ = self.delegate?.deleteMDFeedBackLoaded(response)
-                    self.isLoaded = true
-            }
-        default:
-            return nil
+                _ = action?(response)
+                self.isLoaded = true
         }
-    }
-    
-    private func getParameters(_ mdFeedBackModel: MDFeedBackModel) -> Parameters {
-        return ["MDFeedBackModelId": mdFeedBackModel.mdFeedBackModelId,
-                "FirstName": mdFeedBackModel.firstName,
-                "LastName": mdFeedBackModel.lastName,
-                "Text": mdFeedBackModel.text]
     }
     
     private func getJsonData(_ data: Data, _ options: JSONSerialization.ReadingOptions = []) -> JSON? {
@@ -153,7 +94,14 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         }
     }
     
-    private func getNewMDFeedBackModelFromDictionary(_ dictionary: [String: JSON]) -> MDFeedBackModel {
+    private func getParameters(_ mdFeedBackModel: MDFeedBackModel) -> Parameters {
+        return ["MDFeedBackModelId": mdFeedBackModel.mdFeedBackModelId,
+                "FirstName": mdFeedBackModel.firstName,
+                "LastName": mdFeedBackModel.lastName,
+                "Text": mdFeedBackModel.text]
+    }
+    
+    private func getModel(_ dictionary: [String: JSON]) -> MDFeedBackModel {
         let mdFeedBackModel = MDFeedBackModel()
         
         if let mdFeedBackModelId = dictionary["MDFeedBackModelId"]?.int {
@@ -175,6 +123,14 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     }
     
     open func getMDFeedBacksLoaded(_ response: DataResponse<Any>?) -> Bool {
+        guard let httpResponse = response?.response else {
+            print("MD Error: Не удалось получить данные с хостинга")
+            return false
+        }
+        if httpResponse.statusCode != 200 {
+            printError(responseData: response?.data)
+            return false
+        }
         guard let responseData = response?.data else {
             print("MD Error: Не удалось получить данные с хостинга")
             return false
@@ -196,7 +152,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
                 continue
             }
             
-            let mdFeedBackModel = getNewMDFeedBackModelFromDictionary(jsonDictionary)
+            let mdFeedBackModel = getModel(jsonDictionary)
             mdFeedBacks.append(mdFeedBackModel)
             
             print("id: \(mdFeedBackModel.mdFeedBackModelId) name: \(mdFeedBackModel.firstName) \(mdFeedBackModel.lastName)\n text: \(mdFeedBackModel.text)")
@@ -207,11 +163,18 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     }
     
     open func getMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
+        guard let httpResponse = response?.response else {
+            print("MD Error: Не удалось получить данные с хостинга")
+            return false
+        }
+        if httpResponse.statusCode != 200 {
+            printError(responseData: response?.data)
+            return false
+        }
         guard let responseData = response?.data else {
             print("MD Error: Не удалось получить данные с хостинга")
             return false
         }
-        
         guard let jsonData = getJsonData(
             responseData,
             JSONSerialization.ReadingOptions.mutableLeaves) else {
@@ -222,7 +185,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             print("MD Error: Словарь json пустой")
             return false
         }
-        mdFeedBack = getNewMDFeedBackModelFromDictionary(jsonDictionary)
+        mdFeedBack = getModel(jsonDictionary)
         
         print("id: \(mdFeedBack.mdFeedBackModelId) name: \(mdFeedBack.firstName) \(mdFeedBack.lastName)\n text: \(mdFeedBack.text)")
         
@@ -231,34 +194,103 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     }
     
     open func postMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
-        return log(response)
+        guard let httpResponse = response?.response else {
+            print("MD Error: Не удалось получить данные с хостинга")
+            return false
+        }
+        
+        if httpResponse.statusCode == 200 {
+            print("MD Success: Запрос успешно выполнен")
+            return true
+        }
+        
+        printError(responseData: response?.data)
+        return false
     }
     
     open func editMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
-        return log(response)
+        guard let httpResponse = response?.response else {
+            print("MD Error: Не удалось получить данные с хостинга")
+            return false
+        }
+        
+        if httpResponse.statusCode == 200 {
+            print("MD Success: Запрос успешно выполнен")
+            return true
+        }
+        
+        printError(responseData: response?.data)
+        return false
     }
     
     open func deleteMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
-        return log(response)
+        guard let httpResponse = response?.response else {
+            print("MD Error: Не удалось получить данные с хостинга")
+            return false
+        }
+        
+        if httpResponse.statusCode == 200 {
+            print("MD Success: Запрос успешно выполнен")
+            return true
+        }
+        
+        printError(responseData: response?.data)
+        return false
     }
     
     open func getMDFeedBacks() -> Void {
-        _ = getDataRequest(.get)
+        _ = getDataRequest(
+            .get,
+            nil,
+            nil,
+            self.delegate?.getMDFeedBacksLoaded)
     }
     
     open func getMDFeedBack(_ mdFeedBackModelId: Int) -> Void {
-        _ = getDataRequest(.get, ["MDFeedBackModelId": mdFeedBackModelId])
+        _ = getDataRequest(
+            .get,
+            "\(mdFeedBackModelId)",
+            nil,
+            self.delegate?.getMDFeedBackLoaded)
+    }
+    
+    open func getLastMDFeedBack() -> Void {
+        _ = getDataRequest(
+            .get,
+            "Last",
+            nil,
+            self.delegate?.getMDFeedBackLoaded)
+    }
+    
+    open func getFirstMDFeedBack() -> Void {
+        _ = getDataRequest(
+            .get,
+            "First",
+            nil,
+            self.delegate?.getMDFeedBackLoaded)
     }
     
     open func postMDFeedBack(_ mdFeedBackModel: MDFeedBackModel) -> Void {
-        _ = getDataRequest(.post, getParameters(mdFeedBackModel))
+        _ = getDataRequest(
+            .post,
+            nil,
+            getParameters(mdFeedBackModel),
+            self.delegate?.postMDFeedBackLoaded)
     }
     
     open func editMDFeedBack(_ mdFeedBackModel: MDFeedBackModel) -> Void {
-        _ = getDataRequest(.put, getParameters(mdFeedBackModel))
+        _ = getDataRequest(
+            .put,
+            "\(mdFeedBackModel.mdFeedBackModelId)",
+            getParameters(mdFeedBackModel),
+            self.delegate?.editMDFeedBackLoaded)
     }
     
     open func deleteMDFeedBack(_ mdFeedBackModelId: Int) -> Void {
-        _ = getDataRequest(.delete, ["MDFeedBackModelId": mdFeedBackModelId])
+        _ = getDataRequest(
+            .delete,
+            "\(mdFeedBackModelId)",
+            nil,
+            self.delegate?.deleteMDFeedBackLoaded)
     }
 }
