@@ -74,11 +74,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         _ apiUrl: String = "api/MDFeedBacks/") -> DataRequest? {
         
         let parameter = (parameters?["MDFeedBackModelId"] as? Int) ?? 0
-        var stringParameter = "\(parameter)"
-        if parameter == 0 {
-            stringParameter = ""
-        }
-    
+        let stringParameter = parameter < 1 ? "" : "\(parameter)"
         let url = "\(baseUrl)\(apiUrl)\(stringParameter)"
         isLoaded = false
         switch httpMethod {

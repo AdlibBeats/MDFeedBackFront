@@ -41,10 +41,12 @@ class MessageViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         updateBooleanProperties(false)
+        super.viewWillDisappear(animated)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         updateBooleanProperties(true)
+        super.viewWillAppear(animated)
     }
     
     override func viewDidLoad() {

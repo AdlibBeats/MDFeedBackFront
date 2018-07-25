@@ -14,10 +14,12 @@ class MessageTextViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         updateBooleanProperties(true)
+        super.viewWillDisappear(animated)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         updateBooleanProperties(false)
+        super.viewWillAppear(animated)
     }
     
     override func viewDidLoad() {
@@ -61,10 +63,11 @@ class MessageTextViewController: UIViewController {
     }
     
     func updateBooleanProperties(_ isActive: Bool) -> Void {
+        self.view.isHidden = isActive
+        navigationController?.isNavigationBarHidden = isActive
+        
         _ = isActive ?
             textView.resignFirstResponder() :
             textView.becomeFirstResponder()
-        
-        navigationController?.isNavigationBarHidden = isActive
     }
 }

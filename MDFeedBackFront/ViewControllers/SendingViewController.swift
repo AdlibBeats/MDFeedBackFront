@@ -17,11 +17,13 @@ class SendingViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         updateBooleanProperties(false)
+        super.viewWillDisappear(animated)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
         updateBooleanProperties(true)
+        super.viewWillAppear(animated)
     }
     
     override func viewDidLoad() {
