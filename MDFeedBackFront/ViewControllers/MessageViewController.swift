@@ -41,14 +41,12 @@ class MessageViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        updateBooleanProperties(false)
+        navigationController?.isNavigationBarHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        updateBooleanProperties(true)
+        navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidLoad() {
@@ -101,10 +99,5 @@ class MessageViewController: UIViewController {
             withIdentifier: "MessageTextViewController") as? MessageTextViewController {
             self.navigationController?.pushViewController(messageTextViewController, animated: true)
         }
-    }
-    
-    func updateBooleanProperties(_ isActive: Bool) -> Void {
-        self.view.isHidden = !isActive
-        navigationController?.isNavigationBarHidden = isActive
     }
 }
