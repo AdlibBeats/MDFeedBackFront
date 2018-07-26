@@ -93,7 +93,7 @@ extension UIViewController {
         
         let uiImageView = UIImageView(image: uiImage)
         uiImageView.contentMode = .scaleAspectFill
-        uiImageView.alpha = 0.8
+        uiImageView.alpha = 1.0
         uiImageView.translatesAutoresizingMaskIntoConstraints = false
         return uiImageView
     }

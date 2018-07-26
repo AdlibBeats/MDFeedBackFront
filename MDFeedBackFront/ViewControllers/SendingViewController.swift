@@ -24,7 +24,6 @@ class SendingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.isNavigationBarHidden = true
         updateBooleanProperties(true)
     }
     
