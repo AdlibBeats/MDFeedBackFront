@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import RealmSwift
 
 extension SendingViewController: MDFeedBackDelegate {
     func getMDFeedBacksLoaded(_ response: DataResponse<Any>?) -> Bool {
@@ -18,14 +19,25 @@ extension SendingViewController: MDFeedBackDelegate {
     }
 
     func postMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
+        
         updateBooleanProperties(false)
-        
         let result = mdFeedBackManager.postMDFeedBackLoaded(response)
-        
-        result ?
-            showContinue(self, goToRoot) :
+        if result {
+            do {
+                let realm = try Realm()
+                try! realm.write {
+                    realm.deleteAll()
+                }
+            }
+            catch let error as NSError {
+                print(error)
+            }
+            
+            showContinue(self, goToRoot)
+        }
+        else {
             showError("Сообщение не удалось отправить", self, goBack)
-        
+        }
         return result
     }
     
@@ -40,7 +52,10 @@ extension SendingViewController: MDFeedBackDelegate {
 
 extension UIViewController {
     
-    func showContinue(_ viewController: UIViewController, _ continueAction: ((_ viewController: UIViewController) -> Void)?) -> Void {
+    func showContinue(
+        _ viewController: UIViewController,
+        _ continueAction: ((_ viewController: UIViewController) -> Void)?) -> Void {
+        
         let uiAlertController = getNewUIAlertController("Сообщение успешно отправлено", .alert)
         let action = UIAlertAction(title: "Ok", style: .default) {
             (action) in
@@ -54,7 +69,11 @@ extension UIViewController {
             completion: nil)
     }
     
-    func showError(_ errorMessage: String, _ viewController: UIViewController, _ errorAction: ((_ viewController: UIViewController) -> Void)? = nil) -> Void {
+    func showError(
+        _ errorMessage: String,
+        _ viewController: UIViewController,
+        _ errorAction: ((_ viewController: UIViewController) -> Void)? = nil) -> Void {
+        
         let uiAlertController = getNewUIAlertController(errorMessage, .actionSheet)
         let action = UIAlertAction(title: "Ok", style: .destructive) {
             (action) in
@@ -79,10 +98,11 @@ extension UIViewController {
     func getNewUIAlertController(
         _ alertControllerTitle: String,
         _ alertControllerPreferredStryle: UIAlertControllerStyle) -> UIAlertController {
-        let uiAlertController = UIAlertController(
+        
+        return UIAlertController(
             title: alertControllerTitle,
-            message: nil, preferredStyle: alertControllerPreferredStryle)
-        return uiAlertController
+            message: nil,
+            preferredStyle: alertControllerPreferredStryle)
     }
     
     func getBackgroundImage(_ named: String) -> UIImageView? {

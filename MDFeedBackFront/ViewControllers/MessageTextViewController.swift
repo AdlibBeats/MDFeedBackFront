@@ -7,29 +7,75 @@
 //
 
 import UIKit
+import RealmSwift
 
-class MessageTextViewController: UIViewController {
+class TextModel : Object {
+    @objc dynamic var textModelId = 0
+    @objc dynamic var message = ""
+    @objc dynamic var completed = false
+    
+    override class func primaryKey() -> String? {
+        return "textModelId"
+    }
+}
+
+class MessageTextViewController: UIViewController, UITextViewDelegate {
+    
+    let textModel = TextModel()
     
     @IBOutlet weak var textView: UITextView!
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         updateBooleanProperties(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         updateBooleanProperties(false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUITextView), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        updateTextView()
+        textView.delegate = self
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateUITextView),
+            name: NSNotification.Name.UIKeyboardWillShow,
+            object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUITextView), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateUITextView),
+            name: NSNotification.Name.UIKeyboardWillHide,
+            object: nil)
+    }
+    
+    func updateTextView() {
+        do {
+            let realm = try Realm()
+            guard let textModel = realm.objects(TextModel.self).first else { return }
+            textView.text = textModel.message
+        }
+        catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        guard self.textView == textView else { return }
+        do {
+            let realm = try Realm()
+            try! realm.write {
+                textModel.message = self.textView.text
+                realm.add(textModel, update: true)
+            }
+        }
+        catch let error as NSError {
+            print(error)
+        }
     }
     
     @objc func updateUITextView(sender: Notification) -> Void {
@@ -53,7 +99,6 @@ class MessageTextViewController: UIViewController {
         }
         
         MDSingletonData.message = textView.text
-        
         goToSendingViewController()
     }
     

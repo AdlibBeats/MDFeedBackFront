@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SendingViewController: UIViewController {
 
@@ -36,7 +37,15 @@ class SendingViewController: UIViewController {
         //mdFeedBackModel.mdFeedBackModelId = ... on editMDFeedBack
         mdFeedBackModel.firstName = "default"
         mdFeedBackModel.lastName = "default"
-        mdFeedBackModel.text = MDSingletonData.message
+        
+        do {
+            let realm = try Realm()
+            guard let textModel = realm.objects(TextModel.self).first else { return }
+            mdFeedBackModel.text = textModel.message
+        }
+        catch let error as NSError {
+            print(error)
+        }
         _ = mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
     }
     

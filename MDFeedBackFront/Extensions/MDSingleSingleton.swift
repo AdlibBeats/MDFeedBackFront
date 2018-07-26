@@ -6,6 +6,7 @@
 //  Copyright © 2018 Андрей Васильев. All rights reserved.
 //
 
+//Desaprovechar
 open class MDSingletonData {
     open static var message = ""
 }

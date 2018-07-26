@@ -91,14 +91,18 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         }
     }
     
-    private func getJsonData(_ data: Data, _ options: JSONSerialization.ReadingOptions = []) -> JSON? {
+    private func getJsonData(
+        _ data: Data,
+        _ options: JSONSerialization.ReadingOptions = []) -> JSON? {
+        
         do {
             let jsonData = try JSON(
                 data: data,
                 options: options)
             return jsonData
         }
-        catch {
+        catch let error as NSError {
+            print(error)
             return nil
         }
     }
@@ -111,8 +115,8 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     }
     
     private func getModel(_ dictionary: [String: JSON]) -> MDFeedBackModel {
-        let mdFeedBackModel = MDFeedBackModel()
         
+        let mdFeedBackModel = MDFeedBackModel()
         if let mdFeedBackModelId = dictionary["MDFeedBackModelId"]?.int {
             mdFeedBackModel.mdFeedBackModelId = mdFeedBackModelId
         }
@@ -128,7 +132,12 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         if let text = dictionary["Text"]?.string {
             mdFeedBackModel.text = text
         }
+        
         return mdFeedBackModel
+    }
+    
+    private func printModel(_ mdFeedBackModel: MDFeedBackModel) -> Void {
+        print("id:\(mdFeedBackModel.mdFeedBackModelId)\n firstName:\(mdFeedBackModel.firstName) lastName:\(mdFeedBackModel.lastName)\n text:\(mdFeedBackModel.text)")
     }
     
     open func getMDFeedBacksLoaded(_ response: DataResponse<Any>?) -> Bool {
@@ -157,17 +166,14 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         
         mdFeedBacks = [MDFeedBackModel]()
         for jsonItem in jsonArray {
-            guard let jsonDictionary = jsonItem.dictionary else {
-                continue
-            }
+            guard let jsonDictionary = jsonItem.dictionary else { continue }
             
             let mdFeedBackModel = getModel(jsonDictionary)
             mdFeedBacks.append(mdFeedBackModel)
-            
-            print("id: \(mdFeedBackModel.mdFeedBackModelId) name: \(mdFeedBackModel.firstName) \(mdFeedBackModel.lastName)\n text: \(mdFeedBackModel.text)")
+            printModel(mdFeedBackModel)
         }
-        
         print(errorsDictionary[6]!)
+        
         return true
     }
     
@@ -194,11 +200,11 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             print(errorsDictionary[3]!)
             return false
         }
+        
         mdFeedBack = getModel(jsonDictionary)
-        
-        print("id: \(mdFeedBack.mdFeedBackModelId) name: \(mdFeedBack.firstName) \(mdFeedBack.lastName)\n text: \(mdFeedBack.text)")
-        
+        printModel(mdFeedBack)
         print(errorsDictionary[6]!)
+        
         return true
     }
     
@@ -212,8 +218,8 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             print(errorsDictionary[6]!)
             return true
         }
-        
         printError(responseData: response?.data)
+        
         return false
     }
     
@@ -227,8 +233,8 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             print(errorsDictionary[6]!)
             return true
         }
-        
         printError(responseData: response?.data)
+        
         return false
     }
     
@@ -242,8 +248,8 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             print(errorsDictionary[6]!)
             return true
         }
-        
         printError(responseData: response?.data)
+        
         return false
     }
     
