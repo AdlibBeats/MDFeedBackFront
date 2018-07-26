@@ -16,14 +16,16 @@ class SendingViewController: UIViewController {
     var mdFeedBackManager = MDFeedBackManager()
     
     override func viewWillDisappear(_ animated: Bool) {
-        updateBooleanProperties(false)
         super.viewWillDisappear(animated)
+        
+        updateBooleanProperties(false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         navigationController?.isNavigationBarHidden = true
         updateBooleanProperties(true)
-        super.viewWillAppear(animated)
     }
     
     override func viewDidLoad() {

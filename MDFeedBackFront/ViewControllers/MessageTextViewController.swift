@@ -13,13 +13,15 @@ class MessageTextViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     
     override func viewWillDisappear(_ animated: Bool) {
-        updateBooleanProperties(true)
         super.viewWillDisappear(animated)
+        
+        updateBooleanProperties(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateBooleanProperties(false)
         super.viewWillAppear(animated)
+        
+        updateBooleanProperties(false)
     }
     
     override func viewDidLoad() {

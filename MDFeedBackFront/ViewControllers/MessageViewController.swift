@@ -40,13 +40,15 @@ class MessageViewController: UIViewController {
     @IBOutlet weak var goToInputTextButtun: UIButton!
     
     override func viewWillDisappear(_ animated: Bool) {
-        updateBooleanProperties(false)
         super.viewWillDisappear(animated)
+        
+        updateBooleanProperties(false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateBooleanProperties(true)
         super.viewWillAppear(animated)
+        
+        updateBooleanProperties(true)
     }
     
     override func viewDidLoad() {
