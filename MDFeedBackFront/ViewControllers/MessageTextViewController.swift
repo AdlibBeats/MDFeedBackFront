@@ -34,7 +34,7 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
     }
-    
+    // fix
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.isHidden = true
