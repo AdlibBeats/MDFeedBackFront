@@ -140,9 +140,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView autoresizesSubviews="NO" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5U8-bu-9d6">
+                            <textView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5U8-bu-9d6">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -217,7 +216,7 @@
         <scene sceneID="VPO-eO-HTp">
             <objects>
                 <viewController storyboardIdentifier="SendingViewController" id="5kC-qd-MEF" customClass="SendingViewController" customModule="MDFeedBackFront" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" alpha="0.80000000000000004" contentMode="scaleToFill" id="90H-22-oxW">
+                    <view key="view" contentMode="scaleToFill" id="90H-22-oxW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -236,7 +235,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="puJ-Fa-1HG" firstAttribute="centerX" secondItem="7e0-Bn-Ak2" secondAttribute="centerX" id="3z8-13-1hp"/>
                             <constraint firstItem="bbz-nP-wCA" firstAttribute="top" secondItem="puJ-Fa-1HG" secondAttribute="bottom" constant="30" id="8dS-Sn-5BH"/>

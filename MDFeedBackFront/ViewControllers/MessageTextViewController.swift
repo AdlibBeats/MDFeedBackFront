@@ -37,11 +37,13 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.view.isHidden = true
         textView.resignFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.view.isHidden = false
         textView.becomeFirstResponder()
     }
     
@@ -70,7 +72,7 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
             textView.text = textModel.message
         }
         catch let error as NSError {
-            print(error)
+            print("MD Exception: \(error)")
         }
     }
     
@@ -84,7 +86,7 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
             }
         }
         catch let error as NSError {
-            print(error)
+            print("MD Exception: \(error)")
         }
     }
     

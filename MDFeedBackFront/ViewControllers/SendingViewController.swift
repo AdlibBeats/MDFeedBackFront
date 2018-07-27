@@ -18,13 +18,13 @@ class SendingViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        navigationController?.isNavigationBarHidden = false
         updateBooleanProperties(false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        navigationController?.isNavigationBarHidden = true
         updateBooleanProperties(true)
     }
     
@@ -44,7 +44,7 @@ class SendingViewController: UIViewController {
             mdFeedBackModel.text = textModel.message
         }
         catch let error as NSError {
-            print(error)
+            print("MD Exception: \(error)")
         }
         _ = mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
     }

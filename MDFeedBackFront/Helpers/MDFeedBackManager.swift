@@ -17,7 +17,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     open var mdFeedBacks = [MDFeedBackModel]()
     open var mdFeedBack = MDFeedBackModel()
     open var isLoaded = true
-    open var errorsDictionary =
+    open var messages =
         [
             1: "MD Error: Не удалось получить данные с хостинга.",
             2: "MD Error: Не удалось сконвертировать полученные данные в формат json.",
@@ -47,26 +47,26 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         self.delegate = delegate
     }
     
-    private func printError(responseData: Data?) -> Void {
+    private func printMessage(responseData: Data?) -> Void {
         guard let responseData = responseData else {
-            print(errorsDictionary[1]!)
+            print(messages[1]!)
             return
         }
         guard let jsonData = getJsonData(
             responseData,
             JSONSerialization.ReadingOptions.mutableLeaves) else {
-                print(errorsDictionary[2]!)
+                print(messages[2]!)
                 return
         }
         guard let jsonDictionary = jsonData.dictionary else {
-            print(errorsDictionary[3]!)
+            print(messages[3]!)
             return
         }
-        guard let errorMessage = jsonDictionary["Message"] else {
-            print(errorsDictionary[5]!)
+        guard let message = jsonDictionary["Message"] else {
+            print(messages[5]!)
             return
         }
-        print("MD Error: \(errorMessage)")
+        print("MD Error: \(message)")
     }
     
     private func getDataRequest(
@@ -102,7 +102,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             return jsonData
         }
         catch let error as NSError {
-            print(error)
+            print("MD Exception: \(error)")
             return nil
         }
     }
@@ -142,25 +142,25 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     
     open func getMDFeedBacksLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print(errorsDictionary[1]!)
+            print(messages[1]!)
             return false
         }
         if httpResponse.statusCode != 200 {
-            printError(responseData: response?.data)
+            printMessage(responseData: response?.data)
             return false
         }
         guard let responseData = response?.data else {
-            print(errorsDictionary[1]!)
+            print(messages[1]!)
             return false
         }
         guard let jsonData = getJsonData(
             responseData,
             JSONSerialization.ReadingOptions.mutableContainers) else {
-                print(errorsDictionary[2]!)
+                print(messages[2]!)
                 return false
         }
         guard let jsonArray = jsonData.array else {
-            print(errorsDictionary[4]!)
+            print(messages[4]!)
             return false
         }
         
@@ -172,83 +172,83 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             mdFeedBacks.append(mdFeedBackModel)
             printModel(mdFeedBackModel)
         }
-        print(errorsDictionary[6]!)
+        print(messages[6]!)
         
         return true
     }
     
     open func getMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print(errorsDictionary[1]!)
+            print(messages[1]!)
             return false
         }
         if httpResponse.statusCode != 200 {
-            printError(responseData: response?.data)
+            printMessage(responseData: response?.data)
             return false
         }
         guard let responseData = response?.data else {
-            print(errorsDictionary[1]!)
+            print(messages[1]!)
             return false
         }
         guard let jsonData = getJsonData(
             responseData,
             JSONSerialization.ReadingOptions.mutableLeaves) else {
-                print(errorsDictionary[2]!)
+                print(messages[2]!)
                 return false
         }
         guard let jsonDictionary = jsonData.dictionary else {
-            print(errorsDictionary[3]!)
+            print(messages[3]!)
             return false
         }
         
         mdFeedBack = getModel(jsonDictionary)
         printModel(mdFeedBack)
-        print(errorsDictionary[6]!)
+        print(messages[6]!)
         
         return true
     }
     
     open func postMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print(errorsDictionary[1]!)
+            print(messages[1]!)
             return false
         }
         
         if httpResponse.statusCode == 200 {
-            print(errorsDictionary[6]!)
+            print(messages[6]!)
             return true
         }
-        printError(responseData: response?.data)
+        printMessage(responseData: response?.data)
         
         return false
     }
     
     open func editMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print(errorsDictionary[1]!)
+            print(messages[1]!)
             return false
         }
         
         if httpResponse.statusCode == 200 {
-            print(errorsDictionary[6]!)
+            print(messages[6]!)
             return true
         }
-        printError(responseData: response?.data)
+        printMessage(responseData: response?.data)
         
         return false
     }
     
     open func deleteMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print(errorsDictionary[1]!)
+            print(messages[1]!)
             return false
         }
         
         if httpResponse.statusCode == 200 {
-            print(errorsDictionary[6]!)
+            print(messages[6]!)
             return true
         }
-        printError(responseData: response?.data)
+        printMessage(responseData: response?.data)
         
         return false
     }

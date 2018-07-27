@@ -30,7 +30,7 @@ extension SendingViewController: MDFeedBackDelegate {
                 }
             }
             catch let error as NSError {
-                print(error)
+                print("MD Exception: \(error)")
             }
             
             showContinue(self, goToRoot)

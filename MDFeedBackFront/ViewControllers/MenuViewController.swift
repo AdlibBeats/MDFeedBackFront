@@ -10,7 +10,17 @@ import UIKit
 
 class MenuViewController: UITabBarController, UITabBarControllerDelegate {
 
-    var backgroundImage = UIImageView()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.view.backgroundColor = UIColor.white
+        if let uiImageView = self.getBackgroundImage("backgroundImage4") {
+            let backgroundImage = uiImageView
+            self.view.addSubview(backgroundImage)
+            self.view.sendSubview(toBack: backgroundImage)
+            self.setSquareConstraint(backgroundImage, self.view)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +29,6 @@ class MenuViewController: UITabBarController, UITabBarControllerDelegate {
         
         //self.tabBar.tintColor = UIColor.orange
         //self.tabBar.unselectedItemTintColor = UIColor.gray
-        
-        self.view.backgroundColor = UIColor.white
-        if let uiImageView = self.getBackgroundImage("backgroundImage4") {
-            backgroundImage = uiImageView
-            self.view.addSubview(backgroundImage)
-            self.view.sendSubview(toBack: backgroundImage)
-            self.setSquareConstraint(backgroundImage, self.view)
-        }
     }
 //    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
 //        switch tabBar.selectedItem?.title {
