@@ -52,6 +52,7 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
         
         updateTextView()
         textView.delegate = self
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateUITextView),
