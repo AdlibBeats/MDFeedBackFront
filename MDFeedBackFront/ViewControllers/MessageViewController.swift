@@ -54,7 +54,7 @@ class MessageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        goToInputTextButtun.layer.cornerRadius = goToInputTextButtun.bounds.height / 2.5
+        goToInputTextButtun.layer.cornerRadius = goToInputTextButtun.bounds.height / 2.0
         
         //self.hideKeyboardWhenTappedAround()
         
