@@ -31,7 +31,7 @@ class MessageViewController: UIViewController {
     
     @IBAction func onButtonPressed(_ sender: UIButton) -> Void {
         if let messageTextViewController = storyboard?.instantiateViewController(
-            withIdentifier: "MessageTextViewController") as? MessageTextViewController {
+            withIdentifier: "MessageTextViewController") {
             navigationController?.pushViewController(messageTextViewController, animated: true)
         }
     }
