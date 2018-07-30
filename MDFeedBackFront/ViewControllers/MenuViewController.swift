@@ -13,17 +13,13 @@ class MenuViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBar.tintColor = UIColor.orange
-        if let backgroundImage = self.getBackgroundImage("backgroundImage4") {
-            self.view.addSubview(backgroundImage)
-            self.view.sendSubview(toBack: backgroundImage)
-            self.setSquareConstraint(backgroundImage, self.view)
+        tabBar.tintColor = UIColor.orange
+        if let backgroundImage = getBackgroundImage("backgroundImage4") {
+            view.insertSubview(backgroundImage, at: 0)
+            setSquareConstraint(backgroundImage, view)
         }
         
-        self.delegate = self
-        
-        //self.tabBar.tintColor = UIColor.orange
-        //self.tabBar.unselectedItemTintColor = UIColor.gray
+        //delegate = self
     }
     //    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) { }
 }

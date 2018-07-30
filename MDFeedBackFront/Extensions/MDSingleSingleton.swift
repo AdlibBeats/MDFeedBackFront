@@ -7,6 +7,6 @@
 //
 
 //Desaprovechar
-open class MDSingletonData {
-    open static var message = ""
-}
+//open class MDSingletonData {
+//    open static var message = ""
+//}

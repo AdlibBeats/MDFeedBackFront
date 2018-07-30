@@ -19,20 +19,23 @@ extension SendingViewController: MDFeedBackDelegate {
     }
 
     func postMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
-        
         updateBooleanProperties(false)
         let result = mdFeedBackManager.postMDFeedBackLoaded(response)
         if result {
             do {
                 let realm = try Realm()
-                try! realm.write {
-                    realm.deleteAll()
+                do {
+                    try realm.write {
+                        realm.deleteAll()
+                    }
+                }
+                catch let error as NSError {
+                    print("MD Exception: \(error)")
                 }
             }
             catch let error as NSError {
                 print("MD Exception: \(error)")
             }
-            
             showContinue(self, goToRoot)
         }
         else {
@@ -51,7 +54,6 @@ extension SendingViewController: MDFeedBackDelegate {
 }
 
 extension UIViewController {
-    
     func showContinue(
         _ viewController: UIViewController,
         _ continueAction: ((_ viewController: UIViewController) -> Void)?) -> Void {
@@ -63,7 +65,7 @@ extension UIViewController {
             continueAction?(viewController)
         }
         uiAlertController.addAction(action)
-        self.present(
+        present(
             uiAlertController,
             animated: true,
             completion: nil)
@@ -81,7 +83,7 @@ extension UIViewController {
             errorAction?(viewController)
         }
         uiAlertController.addAction(action)
-        self.present(
+        present(
             uiAlertController,
             animated: true,
             completion: nil)

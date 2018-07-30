@@ -9,7 +9,5 @@
 import UIKit
 
 class InfoNavigationViewController: UINavigationController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    
 }

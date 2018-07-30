@@ -10,7 +10,6 @@ import Alamofire
 import SwiftyJSON
 
 open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
-    
     var delegate: MDFeedBackDelegate?
     open let baseUrl: String
     open let apiUrl: String = "api/MDFeedBacks/"
@@ -28,13 +27,13 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         ]
     
     init() {
-        self.baseUrl = "http://proarttherapy.ru/"
-        self.delegate = nil
+        baseUrl = "http://proarttherapy.ru/"
+        delegate = nil
     }
     
     init(_ baseUrl: String) {
         self.baseUrl = baseUrl
-        self.delegate = nil
+        delegate = nil
     }
     
     init(_ baseUrl: String, _ delegate: MDFeedBackDelegate?) {
@@ -43,7 +42,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     }
     
     init(_ delegate: MDFeedBackDelegate?) {
-        self.baseUrl = "http://proarttherapy.ru/"
+        baseUrl = "http://proarttherapy.ru/"
         self.delegate = delegate
     }
     
@@ -115,7 +114,6 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     }
     
     private func getModel(_ dictionary: [String: JSON]) -> MDFeedBackModel {
-        
         let mdFeedBackModel = MDFeedBackModel()
         if let mdFeedBackModelId = dictionary["MDFeedBackModelId"]?.int {
             mdFeedBackModel.mdFeedBackModelId = mdFeedBackModelId
@@ -163,11 +161,9 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             print(messages[4]!)
             return false
         }
-        
         mdFeedBacks = [MDFeedBackModel]()
         for jsonItem in jsonArray {
             guard let jsonDictionary = jsonItem.dictionary else { continue }
-            
             let mdFeedBackModel = getModel(jsonDictionary)
             mdFeedBacks.append(mdFeedBackModel)
             printModel(mdFeedBackModel)
@@ -200,7 +196,6 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             print(messages[3]!)
             return false
         }
-        
         mdFeedBack = getModel(jsonDictionary)
         printModel(mdFeedBack)
         print(messages[6]!)

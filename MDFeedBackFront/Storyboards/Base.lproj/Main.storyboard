@@ -164,7 +164,7 @@
                         <color key="badgeColor" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Сообщение" id="ceu-pA-CCb">
-                        <barButtonItem key="rightBarButtonItem" title="Отправить" id="aNO-dK-UPW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="aNO-dK-UPW">
                             <connections>
                                 <action selector="onSendItemTouched:" destination="0Fq-a8-6QT" id="Plf-IV-sj0"/>
                             </connections>
@@ -225,7 +225,7 @@
                                 <color key="color" red="1" green="0.4760972799" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отправка сообщения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puJ-Fa-1HG">
-                                <rect key="frame" x="53" y="218" width="214" height="33.5"/>
+                                <rect key="frame" x="53" y="224" width="214" height="33.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33.5" id="QI4-JG-fpv"/>
                                     <constraint firstAttribute="width" constant="214" id="ozI-yb-r6p"/>
@@ -237,7 +237,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="puJ-Fa-1HG" firstAttribute="centerX" secondItem="7e0-Bn-Ak2" secondAttribute="centerX" id="3z8-13-1hp"/>
-                            <constraint firstItem="bbz-nP-wCA" firstAttribute="top" secondItem="puJ-Fa-1HG" secondAttribute="bottom" constant="30" id="8dS-Sn-5BH"/>
+                            <constraint firstItem="bbz-nP-wCA" firstAttribute="top" secondItem="puJ-Fa-1HG" secondAttribute="bottom" constant="24" id="8dS-Sn-5BH"/>
                             <constraint firstItem="bbz-nP-wCA" firstAttribute="centerX" secondItem="7e0-Bn-Ak2" secondAttribute="centerX" id="Hn5-Ek-d8B"/>
                             <constraint firstItem="bbz-nP-wCA" firstAttribute="centerY" secondItem="7e0-Bn-Ak2" secondAttribute="centerY" id="Ul8-YW-WfZ"/>
                         </constraints>

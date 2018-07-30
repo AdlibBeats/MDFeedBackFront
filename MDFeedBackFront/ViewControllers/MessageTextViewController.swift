@@ -34,16 +34,16 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
     }
-    // fix
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.view.isHidden = true
+        view.isHidden = true
         textView.resignFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.view.isHidden = false
+        view.isHidden = false
         textView.becomeFirstResponder()
     }
     
@@ -77,12 +77,17 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        guard self.textView == textView else { return }
+        guard textView == textView else { return }
         do {
             let realm = try Realm()
-            try! realm.write {
-                textModel.message = self.textView.text
-                realm.add(textModel, update: true)
+            do {
+                try realm.write {
+                    textModel.message = textView.text
+                    realm.add(textModel, update: true)
+                }
+            }
+            catch let error as NSError {
+                print("MD Exception: \(error)")
             }
         }
         catch let error as NSError {
@@ -93,7 +98,7 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
     @objc func updateUITextView(sender: Notification) -> Void {
         guard let userInfo = sender.userInfo else { return }
         guard let nsValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
-        let keyboardFrame = self.view.convert(nsValue.cgRectValue, to: self.view.window)
+        let keyboardFrame = view.convert(nsValue.cgRectValue, to: view.window)
         if sender.name == Notification.Name.UIKeyboardWillHide {
             textView.contentInset = UIEdgeInsets.zero
         }
@@ -110,14 +115,9 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
             return
         }
         
-        MDSingletonData.message = textView.text
-        goToSendingViewController()
-    }
-    
-    func goToSendingViewController() -> Void {
-        if let sendingViewController = self.storyboard?.instantiateViewController(
+        if let sendingViewController = storyboard?.instantiateViewController(
             withIdentifier: "SendingViewController") as? SendingViewController {
-            self.navigationController?.pushViewController(sendingViewController, animated: true)
+            navigationController?.pushViewController(sendingViewController, animated: true)
         }
     }
 }
