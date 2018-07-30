@@ -13,6 +13,7 @@ class MenuViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tabBar.tintColor = UIColor.orange
         self.view.backgroundColor = UIColor.white
         if let uiImageView = self.getBackgroundImage("backgroundImage4") {
             let backgroundImage = uiImageView
