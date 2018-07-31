@@ -119,6 +119,6 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
             showError("Поле сообщения должно быть заполнено", self)
             return
         }
-        navigateTo(of: SendingViewController.self)
+        navigateTo(SendingViewController.self)
     }
 }
