@@ -14,21 +14,21 @@ class SendingViewController: UIViewController {
     @IBOutlet weak var progressRing: UIActivityIndicatorView!
     
     var mdFeedBackManager = MDFeedBackManager()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+        progressRing.startAnimating()
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        navigationController?.isNavigationBarHidden = false
+        navigationController?.setNavigationBarHidden(false, animated: animated)
         progressRing.stopAnimating()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        navigationController?.isNavigationBarHidden = true
-        progressRing.startAnimating()
     }
     
     override func viewDidLoad() {
