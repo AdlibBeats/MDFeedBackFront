@@ -13,19 +13,22 @@ class SendingViewController: UIViewController {
 
     @IBOutlet weak var progressRing: UIActivityIndicatorView!
     
-    let application = UIApplication.shared
     var mdFeedBackManager = MDFeedBackManager()
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         navigationController?.isNavigationBarHidden = false
-        updateBooleanProperties(false)
+        progressRing.stopAnimating()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         navigationController?.isNavigationBarHidden = true
-        updateBooleanProperties(true)
+        progressRing.startAnimating()
     }
     
     override func viewDidLoad() {
@@ -47,13 +50,5 @@ class SendingViewController: UIViewController {
             print("MD Exception: \(error)")
         }
         _ = mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
-    }
-    
-    func updateBooleanProperties(_ isActive: Bool) -> Void {
-        application.isNetworkActivityIndicatorVisible = isActive
-        
-        isActive ?
-            progressRing.startAnimating() :
-            progressRing.stopAnimating()
     }
 }

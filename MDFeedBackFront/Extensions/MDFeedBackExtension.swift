@@ -19,7 +19,6 @@ extension SendingViewController: MDFeedBackDelegate {
     }
 
     func postMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
-        updateBooleanProperties(false)
         let result = mdFeedBackManager.postMDFeedBackLoaded(response)
         if result {
             do {
@@ -54,15 +53,34 @@ extension SendingViewController: MDFeedBackDelegate {
 }
 
 extension UIViewController {
+    func goBack(_ viewController: UIViewController, _ animated: Bool = true) -> Void {
+        viewController.navigationController?.popViewController(animated: animated)
+    }
+    
+    func goToRoot(_ viewController: UIViewController, _ animated: Bool = true) -> Void {
+        viewController.navigationController?.popToRootViewController(animated: animated)
+    }
+    
+    func navigateTo<T: UIViewController>(of type: T.Type, _ animated: Bool = true) -> Void {
+        if let viewController = storyboardInstance(String(describing: type)) {
+            navigationController?.pushViewController(viewController, animated: animated)
+        }
+    }
+    
+    func storyboardInstance<T: UIViewController>(_ withIdentifier: String) -> T? {
+        return storyboard?.instantiateViewController(withIdentifier: withIdentifier) as? T
+    }
+    
     func showContinue(
         _ viewController: UIViewController,
-        _ continueAction: ((_ viewController: UIViewController) -> Void)?) -> Void {
+        _ continueAction: ((_ viewController: UIViewController, _ animated: Bool) -> Void)? = nil,
+        _ animated: Bool = true) -> Void {
         
         let uiAlertController = getNewUIAlertController("Сообщение успешно отправлено", .alert)
         let action = UIAlertAction(title: "Ok", style: .default) {
             (action) in
             
-            continueAction?(viewController)
+            continueAction?(viewController, animated)
         }
         uiAlertController.addAction(action)
         present(
@@ -74,27 +92,20 @@ extension UIViewController {
     func showError(
         _ errorMessage: String,
         _ viewController: UIViewController,
-        _ errorAction: ((_ viewController: UIViewController) -> Void)? = nil) -> Void {
+        _ errorAction: ((_ viewController: UIViewController, _ animated: Bool) -> Void)? = nil,
+        _ animated: Bool = true) -> Void {
         
         let uiAlertController = getNewUIAlertController(errorMessage, .actionSheet)
         let action = UIAlertAction(title: "Ok", style: .destructive) {
             (action) in
             
-            errorAction?(viewController)
+            errorAction?(viewController, animated)
         }
         uiAlertController.addAction(action)
         present(
             uiAlertController,
             animated: true,
             completion: nil)
-    }
-    
-    func goBack(_ viewController: UIViewController) -> Void {
-        viewController.navigationController?.popViewController(animated: true)
-    }
-    
-    func goToRoot(_ viewController: UIViewController) -> Void {
-       viewController.navigationController?.popToRootViewController(animated: true)
     }
     
     func getNewUIAlertController(

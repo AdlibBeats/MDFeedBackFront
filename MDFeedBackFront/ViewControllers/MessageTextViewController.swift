@@ -66,6 +66,10 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
             object: nil)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func updateTextView() {
         do {
             let realm = try Realm()
@@ -115,10 +119,6 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
             showError("Поле сообщения должно быть заполнено", self)
             return
         }
-        
-        if let sendingViewController = storyboard?.instantiateViewController(
-            withIdentifier: "SendingViewController") as? SendingViewController {
-            navigationController?.pushViewController(sendingViewController, animated: true)
-        }
+        navigateTo(of: SendingViewController.self)
     }
 }
