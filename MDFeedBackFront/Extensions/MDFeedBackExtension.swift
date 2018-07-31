@@ -35,10 +35,10 @@ extension SendingViewController: MDFeedBackDelegate {
             catch let error as NSError {
                 print("MD Exception: \(error)")
             }
-            showContinue(self, goToRoot)
+            showContinue(goToRoot)
         }
         else {
-            showError("Сообщение не удалось отправить", self, goBack)
+            showError("Сообщение не удалось отправить", goBack)
         }
         return result
     }
@@ -53,17 +53,17 @@ extension SendingViewController: MDFeedBackDelegate {
 }
 
 extension UIViewController {
-    func goBack(_ viewController: UIViewController, _ animated: Bool = true) -> Void {
-        viewController.navigationController?.popViewController(animated: animated)
+    func goBack(_ animated: Bool = true) -> Void {
+        navigationController?.popViewController(animated: animated)
     }
     
-    func goToRoot(_ viewController: UIViewController, _ animated: Bool = true) -> Void {
-        viewController.navigationController?.popToRootViewController(animated: animated)
+    func goToRoot(_ animated: Bool = true) -> Void {
+        navigationController?.popToRootViewController(animated: animated)
     }
     
-    func navigateTo<T: UIViewController>(_ viewController: UIViewController,_ type: T.Type, _ animated: Bool = true) -> Void {
+    func navigateTo<T: UIViewController>(_ type: T.Type, _ animated: Bool = true) -> Void {
         if let sourceViewController = storyboardInstance(String(describing: type)) {
-            viewController.navigationController?.pushViewController(sourceViewController, animated: animated)
+            navigationController?.pushViewController(sourceViewController, animated: animated)
         }
     }
     
@@ -72,15 +72,14 @@ extension UIViewController {
     }
     
     func showContinue(
-        _ viewController: UIViewController,
-        _ continueAction: ((_ viewController: UIViewController, _ animated: Bool) -> Void)? = nil,
+        _ continueAction: ((_ animated: Bool) -> Void)? = nil,
         _ animated: Bool = true) -> Void {
         
         let uiAlertController = getNewUIAlertController("Сообщение успешно отправлено", .alert)
         let action = UIAlertAction(title: "Ok", style: .default) {
             (action) in
             
-            continueAction?(viewController, animated)
+            continueAction?(animated)
         }
         uiAlertController.addAction(action)
         present(
@@ -91,15 +90,14 @@ extension UIViewController {
     
     func showError(
         _ errorMessage: String,
-        _ viewController: UIViewController,
-        _ errorAction: ((_ viewController: UIViewController, _ animated: Bool) -> Void)? = nil,
+        _ errorAction: ((_ animated: Bool) -> Void)? = nil,
         _ animated: Bool = true) -> Void {
         
         let uiAlertController = getNewUIAlertController(errorMessage, .actionSheet)
         let action = UIAlertAction(title: "Ok", style: .destructive) {
             (action) in
             
-            errorAction?(viewController, animated)
+            errorAction?(animated)
         }
         uiAlertController.addAction(action)
         present(

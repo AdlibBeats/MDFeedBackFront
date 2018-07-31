@@ -116,9 +116,9 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func onSendItemTouched(_ sender: UIBarButtonItem) {
         if textView.text.isEmpty {
-            showError("Поле сообщения должно быть заполнено", self)
+            showError("Поле сообщения должно быть заполнено")
             return
         }
-        navigateTo(self, SendingViewController.self)
+        navigateTo(SendingViewController.self)
     }
 }
