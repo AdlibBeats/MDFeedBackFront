@@ -61,9 +61,9 @@ extension UIViewController {
         viewController.navigationController?.popToRootViewController(animated: animated)
     }
     
-    func navigateTo<T: UIViewController>(_ type: T.Type, _ animated: Bool = true) -> Void {
-        if let viewController = storyboardInstance(String(describing: type)) {
-            navigationController?.pushViewController(viewController, animated: animated)
+    func navigateTo<T: UIViewController>(_ viewController: UIViewController,_ type: T.Type, _ animated: Bool = true) -> Void {
+        if let sourceViewController = storyboardInstance(String(describing: type)) {
+            viewController.navigationController?.pushViewController(sourceViewController, animated: animated)
         }
     }
     

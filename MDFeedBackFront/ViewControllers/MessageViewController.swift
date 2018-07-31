@@ -30,6 +30,6 @@ class MessageViewController: UIViewController {
     }
     
     @IBAction func onButtonPressed(_ sender: UIButton) -> Void {
-        navigateTo(MessageTextViewController.self)
+        navigateTo(self, MessageTextViewController.self)
     }
 }
