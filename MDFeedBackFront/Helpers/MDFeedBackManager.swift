@@ -48,21 +48,21 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     
     private func printMessage(responseData: Data?) -> Void {
         guard let responseData = responseData else {
-            print(messages[1])
+            print(messages[0])
             return
         }
         guard let jsonData = getJsonData(
             responseData,
             JSONSerialization.ReadingOptions.mutableLeaves) else {
-                print(messages[2])
+                print(messages[1])
                 return
         }
         guard let jsonDictionary = jsonData.dictionary else {
-            print(messages[3])
+            print(messages[2])
             return
         }
         guard let message = jsonDictionary["Message"] else {
-            print(messages[5])
+            print(messages[4])
             return
         }
         print("MD Error: \(message)")
@@ -140,7 +140,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     
     open func getMDFeedBacksLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print(messages[1])
+            print(messages[0])
             return false
         }
         if httpResponse.statusCode != 200 {
@@ -148,17 +148,17 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             return false
         }
         guard let responseData = response?.data else {
-            print(messages[1])
+            print(messages[0])
             return false
         }
         guard let jsonData = getJsonData(
             responseData,
             JSONSerialization.ReadingOptions.mutableContainers) else {
-                print(messages[2])
+                print(messages[1])
                 return false
         }
         guard let jsonArray = jsonData.array else {
-            print(messages[4])
+            print(messages[3])
             return false
         }
         mdFeedBacks = [MDFeedBackModel]()
@@ -168,14 +168,14 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             mdFeedBacks.append(mdFeedBackModel)
             printModel(mdFeedBackModel)
         }
-        print(messages[6])
+        print(messages[5])
         
         return true
     }
     
     open func getMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print(messages[1])
+            print(messages[0])
             return false
         }
         if httpResponse.statusCode != 200 {
@@ -183,34 +183,34 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             return false
         }
         guard let responseData = response?.data else {
-            print(messages[1])
+            print(messages[0])
             return false
         }
         guard let jsonData = getJsonData(
             responseData,
             JSONSerialization.ReadingOptions.mutableLeaves) else {
-                print(messages[2])
+                print(messages[1])
                 return false
         }
         guard let jsonDictionary = jsonData.dictionary else {
-            print(messages[3])
+            print(messages[2])
             return false
         }
         mdFeedBack = getModel(jsonDictionary)
         printModel(mdFeedBack)
-        print(messages[6])
+        print(messages[5])
         
         return true
     }
     
     open func postMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print(messages[1])
+            print(messages[0])
             return false
         }
         
         if httpResponse.statusCode == 200 {
-            print(messages[6])
+            print(messages[5])
             return true
         }
         printMessage(responseData: response?.data)
@@ -220,12 +220,12 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     
     open func editMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print(messages[1])
+            print(messages[0])
             return false
         }
         
         if httpResponse.statusCode == 200 {
-            print(messages[6])
+            print(messages[5])
             return true
         }
         printMessage(responseData: response?.data)
@@ -235,12 +235,12 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     
     open func deleteMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
         guard let httpResponse = response?.response else {
-            print(messages[1])
+            print(messages[0])
             return false
         }
         
         if httpResponse.statusCode == 200 {
-            print(messages[6])
+            print(messages[5])
             return true
         }
         printMessage(responseData: response?.data)
