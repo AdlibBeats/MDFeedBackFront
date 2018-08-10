@@ -6,6 +6,39 @@
 //  Copyright © 2018 Андрей Васильев. All rights reserved.
 //
 
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+//
+//        let messageViewController = getNewViewController(.message, "MD Feedback", "Message", UIImage(named: "messageIcon"), UIImage(named: "messageIcon"))
+//
+//        let infoViewController = getNewViewController(.info, "MD Information", "Information", UIImage(named: "infoIcon"), UIImage(named: "infoIcon"))
+//
+//        let messageNavigationController = UINavigationController(rootViewController: messageViewController)
+//        let infoNavigationController = UINavigationController(rootViewController: infoViewController)
+//
+//        let tabBarController = UITabBarController()
+//        tabBarController.setViewControllers([messageNavigationController, infoNavigationController], animated: true)
+//
+//        self.window?.rootViewController = tabBarController
+//        self.window?.makeKeyAndVisible()
+
+//    func getNewViewController(
+//        _ typeController: TypeController,
+//        _ navigationItemTitle: String,
+//        _ tabBarItemTitle: String,
+//        _ image: UIImage?,
+//        _ selectedImage: UIImage?,
+//        _ backgroundColor: UIColor = UIColor.orange) -> UIViewController {
+//
+//        let viewController = typeController == .message ?
+//            MessageViewController() : InfoViewController()
+//
+//        viewController.navigationItem.title = navigationItemTitle
+//        viewController.tabBarItem = UITabBarItem(title: tabBarItemTitle, image: image, selectedImage: selectedImage)
+//        viewController.view.backgroundColor = backgroundColor
+//
+//        return viewController
+//    }
+
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        super.touchesBegan(touches, with: event)
 //        self.view.endEditing(true)

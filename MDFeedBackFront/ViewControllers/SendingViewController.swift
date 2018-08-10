@@ -35,20 +35,20 @@ class SendingViewController: UIViewController {
         super.viewDidLoad()
         
         mdFeedBackManager = MDFeedBackManager(self)
-        
-        let mdFeedBackModel = MDFeedBackModel()
-        //mdFeedBackModel.mdFeedBackModelId = ... on editMDFeedBack
-        mdFeedBackModel.firstName = "default"
-        mdFeedBackModel.lastName = "default"
-        
+        sendMessage()
+    }
+    
+    private func sendMessage() -> Void {
         do {
             let realm = try Realm()
-            guard let textModel = realm.objects(TextModel.self).first else { return }
-            mdFeedBackModel.text = textModel.message
+            guard let mdFeedBackModel = realm.objects(MDFeedBackModel.self).first else {
+                print("MD Error: Объект Realm не найден.")
+                return
+            }
+            _ = mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
         }
         catch let error as NSError {
             print("MD Exception: \(error)")
         }
-        _ = mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
     }
 }

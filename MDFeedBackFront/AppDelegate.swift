@@ -14,42 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
-//        
-//        let messageViewController = getNewViewController(.message, "MD Feedback", "Message", UIImage(named: "messageIcon"), UIImage(named: "messageIcon"))
-//
-//        let infoViewController = getNewViewController(.info, "MD Information", "Information", UIImage(named: "infoIcon"), UIImage(named: "infoIcon"))
-//
-//        let messageNavigationController = UINavigationController(rootViewController: messageViewController)
-//        let infoNavigationController = UINavigationController(rootViewController: infoViewController)
-//
-//        let tabBarController = UITabBarController()
-//        tabBarController.setViewControllers([messageNavigationController, infoNavigationController], animated: true)
-//
-//        self.window?.rootViewController = tabBarController
-//        self.window?.makeKeyAndVisible()
-        
         return true
     }
-    
-//    func getNewViewController(
-//        _ typeController: TypeController,
-//        _ navigationItemTitle: String,
-//        _ tabBarItemTitle: String,
-//        _ image: UIImage?,
-//        _ selectedImage: UIImage?,
-//        _ backgroundColor: UIColor = UIColor.orange) -> UIViewController {
-//        
-//        let viewController = typeController == .message ?
-//            MessageViewController() : InfoViewController()
-//        
-//        viewController.navigationItem.title = navigationItemTitle
-//        viewController.tabBarItem = UITabBarItem(title: tabBarItemTitle, image: image, selectedImage: selectedImage)
-//        viewController.view.backgroundColor = backgroundColor
-//        
-//        return viewController
-//    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

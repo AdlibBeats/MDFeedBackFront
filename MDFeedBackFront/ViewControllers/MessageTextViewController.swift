@@ -9,21 +9,8 @@
 import UIKit
 import RealmSwift
 
-class TextModel : Object {
-    @objc dynamic var textModelId = 0
-    @objc dynamic var message = ""
-    @objc dynamic var completed = false
-    
-    override class func primaryKey() -> String? {
-        return "textModelId"
-    }
-}
-
 class MessageTextViewController: UIViewController, UITextViewDelegate {
-    
-    let textModel = TextModel()
-    
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet private weak var textView: UITextView!
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -38,18 +25,18 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateTextView()
+        textView.text = getTextFromLocalStorage()
         textView.delegate = self
         
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(updateUITextView),
+            selector: #selector(updateContentInsetFromTextView),
             name: NSNotification.Name.UIKeyboardWillShow,
             object: nil)
         
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(updateUITextView),
+            selector: #selector(updateContentInsetFromTextView),
             name: NSNotification.Name.UIKeyboardWillHide,
             object: nil)
     }
@@ -58,25 +45,29 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func updateTextView() {
+    private func getTextFromLocalStorage() -> String? {
         do {
             let realm = try Realm()
-            guard let textModel = realm.objects(TextModel.self).first else { return }
-            textView.text = textModel.message
+            guard let mdFeedBackModel = realm.objects(MDFeedBackModel.self).first else {
+                print("MD Error: Объект Realm не найден.")
+                return nil
+            }
+            return mdFeedBackModel.text
         }
         catch let error as NSError {
             print("MD Exception: \(error)")
         }
+        return nil
     }
     
-    func textViewDidChange(_ textView: UITextView) {
-        guard textView == textView else { return }
+    private func updateTextFromLocalStorage(_ text: String) -> Void {
         do {
             let realm = try Realm()
             do {
                 try realm.write {
-                    textModel.message = textView.text
-                    realm.add(textModel, update: true)
+                    let mdFeedBackModel = MDFeedBackModel()
+                    mdFeedBackModel.text = text
+                    realm.add(mdFeedBackModel, update: true)
                 }
             }
             catch let error as NSError {
@@ -88,7 +79,11 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @objc func updateUITextView(sender: Notification) -> Void {
+    open func textViewDidChange(_ textView: UITextView) {
+        updateTextFromLocalStorage(textView.text)
+    }
+    
+    @objc func updateContentInsetFromTextView(sender: Notification) -> Void {
         guard let userInfo = sender.userInfo else { return }
         guard let nsValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardFrame = view.convert(nsValue.cgRectValue, to: view.window)
