@@ -10,7 +10,6 @@ import UIKit
 import RealmSwift
 
 class SendingViewController: UIViewController {
-
     @IBOutlet weak var progressRing: UIActivityIndicatorView!
     
     var mdFeedBackManager = MDFeedBackManager()
@@ -42,13 +41,13 @@ class SendingViewController: UIViewController {
         do {
             let realm = try Realm()
             guard let mdFeedBackModel = realm.objects(MDFeedBackModel.self).first else {
-                print("MD Error: Объект Realm не найден.")
+                print("MD Not found (\(type(of: self))): Объект Realm не найден.")
                 return
             }
             _ = mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
         }
         catch let error as NSError {
-            print("MD Exception: \(error)")
+            print("MD Exception (\(type(of: self))): \(error)")
         }
     }
 }

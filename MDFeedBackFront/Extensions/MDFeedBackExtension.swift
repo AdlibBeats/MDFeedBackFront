@@ -29,11 +29,11 @@ extension SendingViewController: MDFeedBackDelegate {
                     }
                 }
                 catch let error as NSError {
-                    print("MD Exception: \(error)")
+                    print("MD Exception (\(type(of: self))): \(error)")
                 }
             }
             catch let error as NSError {
-                print("MD Exception: \(error)")
+                print("MD Exception (\(type(of: self))): \(error)")
             }
             showContinue(goToRoot)
         }
@@ -118,7 +118,7 @@ extension UIViewController {
     
     func getBackgroundImage(_ named: String) -> UIImageView? {
         guard let uiImage = UIImage(named: named) else {
-            print("MD Error: не удалось найти изображение \(named)")
+            print("MD Error (\(type(of: self))): не удалось найти изображение \(named)")
             return nil
         }
         

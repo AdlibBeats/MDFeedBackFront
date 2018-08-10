@@ -16,34 +16,41 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
     open var mdFeedBacks = [MDFeedBackModel]()
     open var mdFeedBack = MDFeedBackModel()
     open var isLoaded = true
-    open var messages =
-        [
-            "MD Error: Не удалось получить данные с хостинга.",
-            "MD Error: Не удалось сконвертировать полученные данные в формат json.",
-            "MD Error: Словарь json пустой.",
-            "MD Error: Массив json пустой.",
-            "MD Error: Не удалось найти значение по ключу: ",
-            "MD Success: Запрос успешно выполнен."
-        ]
+    open var messages = [String]()
     
     init() {
         baseUrl = "http://proarttherapy.ru/"
         delegate = nil
+        initError()
     }
     
     init(_ baseUrl: String) {
         self.baseUrl = baseUrl
         delegate = nil
+        initError()
     }
     
     init(_ baseUrl: String, _ delegate: MDFeedBackDelegate?) {
         self.baseUrl = baseUrl
         self.delegate = delegate
+        initError()
     }
     
     init(_ delegate: MDFeedBackDelegate?) {
         baseUrl = "http://proarttherapy.ru/"
         self.delegate = delegate
+        initError()
+    }
+    
+    private func initError() -> Void {
+        messages = [
+            "MD Error (\(type(of: self))): Не удалось получить данные с хостинга.",
+            "MD Error (\(type(of: self))): Не удалось сконвертировать полученные данные в формат json.",
+            "MD Error (\(type(of: self))): Словарь json пустой.",
+            "MD Error (\(type(of: self))): Массив json пустой.",
+            "MD Error (\(type(of: self))): Не удалось найти значение по ключу: ",
+            "MD Success (\(type(of: self))): Запрос успешно выполнен."
+        ]
     }
     
     private func printMessage(responseData: Data?) -> Void {

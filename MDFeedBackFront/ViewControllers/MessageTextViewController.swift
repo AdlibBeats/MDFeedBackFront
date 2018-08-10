@@ -49,13 +49,13 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
         do {
             let realm = try Realm()
             guard let mdFeedBackModel = realm.objects(MDFeedBackModel.self).first else {
-                print("MD Error: Объект Realm не найден.")
+                print("MD Not found (\(type(of: self))): Объект Realm не найден.")
                 return nil
             }
             return mdFeedBackModel.text
         }
         catch let error as NSError {
-            print("MD Exception: \(error)")
+            print("MD Exception (\(type(of: self))): \(error)")
         }
         return nil
     }
@@ -71,11 +71,11 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
                 }
             }
             catch let error as NSError {
-                print("MD Exception: \(error)")
+                print("MD Exception (\(type(of: self))): \(error)")
             }
         }
         catch let error as NSError {
-            print("MD Exception: \(error)")
+            print("MD Exception (\(type(of: self))): \(error)")
         }
     }
     
