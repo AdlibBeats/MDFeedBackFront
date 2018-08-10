@@ -22,7 +22,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             "MD Error: Не удалось сконвертировать полученные данные в формат json.",
             "MD Error: Словарь json пустой.",
             "MD Error: Массив json пустой.",
-            "MD Error: Не удалось найти значение по ключу 'Message'.",
+            "MD Error: Не удалось найти значение по ключу: ",
             "MD Success: Запрос успешно выполнен."
         ]
     
@@ -61,8 +61,10 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             print(messages[2])
             return
         }
-        guard let message = jsonDictionary["Message"] else {
-            print(messages[4])
+        
+        let keyMessage = "Message"
+        guard let message = jsonDictionary[keyMessage] else {
+            print(messages[4] + "'\(keyMessage)'.")
             return
         }
         print("MD Error: \(message)")
