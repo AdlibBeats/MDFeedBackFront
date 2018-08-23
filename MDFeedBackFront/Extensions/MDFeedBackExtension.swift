@@ -19,28 +19,26 @@ extension SendingViewController: MDFeedBackDelegate {
     }
 
     func postMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {
-        let result = mdFeedBackManager.postMDFeedBackLoaded(response)
-        if result {
+        guard mdFeedBackManager.postMDFeedBackLoaded(response) else {
+            showError("Сообщение не удалось отправить", goBack)
+            return false
+        }
+        do {
+            let realm = try Realm()
             do {
-                let realm = try Realm()
-                do {
-                    try realm.write {
-                        realm.deleteAll()
-                    }
-                }
-                catch let error as NSError {
-                    print("MD Exception (\(type(of: self))): \(error)")
+                try realm.write {
+                    realm.deleteAll()
                 }
             }
             catch let error as NSError {
                 print("MD Exception (\(type(of: self))): \(error)")
             }
-            showContinue(goToRoot)
         }
-        else {
-            showError("Сообщение не удалось отправить", goBack)
+        catch let error as NSError {
+            print("MD Exception (\(type(of: self))): \(error)")
         }
-        return result
+        showContinue(goToRoot)
+        return true
     }
     
     func editMDFeedBackLoaded(_ response: DataResponse<Any>?) -> Bool {

@@ -92,7 +92,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             parameters: parameters,
             encoding: JSONEncoding.default,
             headers: nil).responseJSON {
-                response in
+                [unowned self] response in
 
                 _ = action?(response)
                 self.isLoaded = true
