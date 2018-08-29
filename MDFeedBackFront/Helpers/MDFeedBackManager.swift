@@ -53,7 +53,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
         ]
     }
     
-    private func printMessage(responseData: Data?) -> Void {
+    private func printMessage(_ responseData: Data?) -> Void {
         guard let responseData = responseData else {
             print(messages[0])
             return
@@ -153,7 +153,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             return false
         }
         if httpResponse.statusCode != 200 {
-            printMessage(responseData: response?.data)
+            printMessage(response?.data)
             return false
         }
         guard let responseData = response?.data else {
@@ -188,7 +188,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             return false
         }
         if httpResponse.statusCode != 200 {
-            printMessage(responseData: response?.data)
+            printMessage(response?.data)
             return false
         }
         guard let responseData = response?.data else {
@@ -222,7 +222,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             print(messages[5])
             return true
         }
-        printMessage(responseData: response?.data)
+        printMessage(response?.data)
         
         return false
     }
@@ -237,7 +237,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             print(messages[5])
             return true
         }
-        printMessage(responseData: response?.data)
+        printMessage(response?.data)
         
         return false
     }
@@ -252,7 +252,7 @@ open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
             print(messages[5])
             return true
         }
-        printMessage(responseData: response?.data)
+        printMessage(response?.data)
         
         return false
     }
