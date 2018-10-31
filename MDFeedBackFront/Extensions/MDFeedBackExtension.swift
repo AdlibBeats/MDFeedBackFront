@@ -24,8 +24,7 @@ extension SendingViewController: MDFeedBackDelegate {
             return false
         }
         
-        DispatchQueue.global(qos: .background).async {
-            [unowned self] in
+        DispatchQueue.global(qos: .background).async { [unowned self] in
             do {
                 let realm = try Realm()
                 do {
@@ -40,7 +39,7 @@ extension SendingViewController: MDFeedBackDelegate {
             catch let error as NSError {
                 print("MD Exception (\(type(of: self))): \(error)")
             }
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.showContinue(self.goToRoot)
             }
         }

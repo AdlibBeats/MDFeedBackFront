@@ -25,11 +25,9 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DispatchQueue.global(qos: .background).async {
-            [unowned self] in
-            
+        DispatchQueue.global(qos: .background).async { [unowned self] in
             let textFromLocalStorage = self.getTextFromLocalStorage()
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.textView.text = textFromLocalStorage
             }
         }
@@ -68,9 +66,7 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
     }
     
     private func updateTextFromLocalStorage(_ text: String) -> Void {
-        DispatchQueue.global(qos: .background).async {
-            [unowned self] in
-            
+        DispatchQueue.global(qos: .background).async { [unowned self] in
             do {
                 let realm = try Realm()
                 do {

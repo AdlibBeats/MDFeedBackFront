@@ -38,9 +38,7 @@ class SendingViewController: UIViewController {
     }
     
     private func sendMessage() -> Void {
-        DispatchQueue.global(qos: .background).async {
-            [unowned self] in
-            
+        DispatchQueue.global(qos: .background).async { [unowned self] in
             do {
                 let realm = try Realm()
                 guard let mdFeedBackModel = realm.objects(MDFeedBackModel.self).first else {
