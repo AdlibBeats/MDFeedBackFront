@@ -9,37 +9,31 @@
 import Alamofire
 import SwiftyJSON
 
-open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
-    private var delegate: MDFeedBackDelegate?
+open class MDFeedBackManager: MDFeedBackProtocol, MDFeedBackDelegate {
+    private(set) var delegate: MDFeedBackDelegate?
+    private(set) var baseUrl: String = "http://proarttherapy.ru/"
+    private(set) var apiUrl: String = "api/MDFeedBacks/"
     
-    public let baseUrl: String
-    public let apiUrl: String = "api/MDFeedBacks/"
-    public var mdFeedBacks = [MDFeedBackModel]()
-    public var mdFeedBack = MDFeedBackModel()
-    public var isLoaded = true
-    public var messages = [String]()
-    
-    init() {
-        baseUrl = "http://proarttherapy.ru/"
-        delegate = nil
-        initError()
-    }
-    
-    init(_ baseUrl: String) {
-        self.baseUrl = baseUrl
-        delegate = nil
-        initError()
-    }
-    
-    init(_ baseUrl: String, _ delegate: MDFeedBackDelegate?) {
-        self.baseUrl = baseUrl
-        self.delegate = delegate
-        initError()
-    }
+    open var mdFeedBacks = [MDFeedBackModel]()
+    open var mdFeedBack = MDFeedBackModel()
+    open var isLoaded = true
+    open var messages = [String]()
     
     init(_ delegate: MDFeedBackDelegate?) {
-        baseUrl = "http://proarttherapy.ru/"
         self.delegate = delegate
+        
+        initError()
+    }
+    
+    init(
+        _ baseUrl: String = "http://proarttherapy.ru/",
+        _ apiUrl: String = "api/MDFeedBacks/",
+        _ delegate: MDFeedBackDelegate? = nil) {
+        
+        self.baseUrl = baseUrl
+        self.apiUrl = apiUrl
+        self.delegate = delegate
+        
         initError()
     }
     

@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-open class MDFeedBackModel : Object {
+open class MDFeedBackModel: Object {
     @objc dynamic open var mdFeedBackModelId = 0
     @objc dynamic open var text = "default"
     @objc dynamic open var firstName = "default"

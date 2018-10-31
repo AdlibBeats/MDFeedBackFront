@@ -12,7 +12,9 @@ import RealmSwift
 class SendingViewController: UIViewController {
     @IBOutlet weak var progressRing: UIActivityIndicatorView!
     
-    var mdFeedBackManager = MDFeedBackManager()
+    var mdFeedBackManager: MDFeedBackManager {
+        return MDFeedBackManager(self)
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,7 +35,6 @@ class SendingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mdFeedBackManager = MDFeedBackManager(self)
         sendMessage()
     }
     
