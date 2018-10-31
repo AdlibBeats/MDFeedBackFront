@@ -10,13 +10,14 @@ import Alamofire
 import SwiftyJSON
 
 open class MDFeedBackManager : MDFeedBackProtocol, MDFeedBackDelegate {
-    var delegate: MDFeedBackDelegate?
-    open let baseUrl: String
-    open let apiUrl: String = "api/MDFeedBacks/"
-    open var mdFeedBacks = [MDFeedBackModel]()
-    open var mdFeedBack = MDFeedBackModel()
-    open var isLoaded = true
-    open var messages = [String]()
+    private var delegate: MDFeedBackDelegate?
+    
+    public let baseUrl: String
+    public let apiUrl: String = "api/MDFeedBacks/"
+    public var mdFeedBacks = [MDFeedBackModel]()
+    public var mdFeedBack = MDFeedBackModel()
+    public var isLoaded = true
+    public var messages = [String]()
     
     init() {
         baseUrl = "http://proarttherapy.ru/"
