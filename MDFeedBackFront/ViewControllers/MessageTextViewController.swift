@@ -25,7 +25,14 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textView.text = getTextFromLocalStorage()
+        DispatchQueue.global(qos: .background).async {
+            [unowned self] in
+            
+            let textFromLocalStorage = self.getTextFromLocalStorage()
+            DispatchQueue.main.async {
+                self.textView.text = textFromLocalStorage
+            }
+        }
         textView.delegate = self
         
         NotificationCenter.default.addObserver(
@@ -61,21 +68,25 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
     }
     
     private func updateTextFromLocalStorage(_ text: String) -> Void {
-        do {
-            let realm = try Realm()
+        DispatchQueue.global(qos: .background).async {
+            [unowned self] in
+            
             do {
-                try realm.write {
-                    let mdFeedBackModel = MDFeedBackModel()
-                    mdFeedBackModel.text = text
-                    realm.add(mdFeedBackModel, update: true)
+                let realm = try Realm()
+                do {
+                    try realm.write {
+                        let mdFeedBackModel = MDFeedBackModel()
+                        mdFeedBackModel.text = text
+                        realm.add(mdFeedBackModel, update: true)
+                    }
+                }
+                catch let error as NSError {
+                    print("MD Exception (\(type(of: self))): \(error)")
                 }
             }
             catch let error as NSError {
                 print("MD Exception (\(type(of: self))): \(error)")
             }
-        }
-        catch let error as NSError {
-            print("MD Exception (\(type(of: self))): \(error)")
         }
     }
     
