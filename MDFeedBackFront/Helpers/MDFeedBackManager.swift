@@ -16,7 +16,6 @@ open class MDFeedBackManager: MDFeedBackProtocol, MDFeedBackDelegate {
     
     open var mdFeedBacks = [MDFeedBackModel]()
     open var mdFeedBack = MDFeedBackModel()
-    open var isLoaded = true
     open var messages = [String]()
     
     init(_ delegate: MDFeedBackDelegate?) {
@@ -79,18 +78,14 @@ open class MDFeedBackManager: MDFeedBackProtocol, MDFeedBackDelegate {
         _ action: ((_ response: DataResponse<Any>?) -> Bool)? = nil) -> DataRequest? {
         
         let url = "\(baseUrl)\(apiUrl)\(field ?? "")"
-        isLoaded = false
         
         return Alamofire.request(
             url,
             method: httpMethod,
             parameters: parameters,
             encoding: JSONEncoding.default,
-            headers: nil).responseJSON {
-                [unowned self] response in
-
-                _ = action?(response)
-                self.isLoaded = true
+            headers: nil).responseJSON { 
+                _ = action?($0)
         }
     }
     

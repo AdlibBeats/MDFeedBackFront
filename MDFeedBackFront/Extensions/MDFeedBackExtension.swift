@@ -24,25 +24,21 @@ extension SendingViewController: MDFeedBackDelegate {
             return false
         }
         
-        DispatchQueue.global(qos: .background).async { [unowned self] in
+        do {
+            let realm = try Realm()
             do {
-                let realm = try Realm()
-                do {
-                    try realm.write {
-                        realm.deleteAll()
-                    }
-                }
-                catch let error as NSError {
-                    print("MD Exception (\(type(of: self))): \(error)")
+                try realm.write {
+                    realm.deleteAll()
                 }
             }
             catch let error as NSError {
                 print("MD Exception (\(type(of: self))): \(error)")
             }
-            DispatchQueue.main.async { [unowned self] in
-                self.showContinue(self.goToRoot)
-            }
         }
+        catch let error as NSError {
+            print("MD Exception (\(type(of: self))): \(error)")
+        }
+        self.showContinue(self.goToRoot)
         return true
     }
     

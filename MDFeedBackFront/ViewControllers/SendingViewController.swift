@@ -39,18 +39,16 @@ class SendingViewController: UIViewController {
     }
     
     private func sendMessage() -> Void {
-        DispatchQueue.global(qos: .background).async { [unowned self] in
-            do {
-                let realm = try Realm()
-                guard let mdFeedBackModel = realm.objects(MDFeedBackModel.self).first else {
-                    print("MD Not found (\(type(of: self))): Объект Realm не найден.")
-                    return
-                }
-                _ = self.mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
+        do {
+            let realm = try Realm()
+            guard let mdFeedBackModel = realm.objects(MDFeedBackModel.self).first else {
+                print("MD Not found (\(type(of: self))): Объект Realm не найден.")
+                return
             }
-            catch let error as NSError {
-                print("MD Exception (\(type(of: self))): \(error)")
-            }
+            _ = self.mdFeedBackManager.postMDFeedBack(mdFeedBackModel)
+        }
+        catch let error as NSError {
+            print("MD Exception (\(type(of: self))): \(error)")
         }
     }
 }
