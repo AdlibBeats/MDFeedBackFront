@@ -32,13 +32,13 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateContentInsetFromTextView),
-            name: NSNotification.Name.UIKeyboardWillShow,
+            name: UIResponder.keyboardWillShowNotification,
             object: nil)
         
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateContentInsetFromTextView),
-            name: NSNotification.Name.UIKeyboardWillHide,
+            name: UIResponder.keyboardWillHideNotification,
             object: nil)
     }
     
@@ -86,13 +86,13 @@ class MessageTextViewController: UIViewController, UITextViewDelegate {
     
     @objc func updateContentInsetFromTextView(sender: Notification) -> Void {
         guard let userInfo = sender.userInfo else { return }
-        guard let nsValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
+        guard let nsValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardFrame = view.convert(nsValue.cgRectValue, to: view.window)
-        if sender.name == Notification.Name.UIKeyboardWillHide {
+        if sender.name == UIResponder.keyboardWillHideNotification {
             textView.contentInset = UIEdgeInsets.zero
         }
         else {
-            textView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.height, 0)
+            textView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
             textView.scrollIndicatorInsets = textView.contentInset
         }
         textView.scrollRangeToVisible(textView.selectedRange)

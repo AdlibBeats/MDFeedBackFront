@@ -107,7 +107,7 @@ extension UIViewController {
     
     func getNewUIAlertController(
         _ alertControllerTitle: String,
-        _ alertControllerPreferredStryle: UIAlertControllerStyle) -> UIAlertController {
+        _ alertControllerPreferredStryle: UIAlertController.Style) -> UIAlertController {
         
         return UIAlertController(
             title: alertControllerTitle,
